@@ -21,10 +21,26 @@ function App() {
   }, [])*/
   return (
     <BrowserRouter>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route
+          path="/"
+          element={
+            <RouteProtector>
+              <Home />
+            </RouteProtector>
+          }
+        />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/home"
+          element={
+            <RouteProtector>
+              <Home />
+            </RouteProtector>
+          }
+        />
         <Route
           path="/dashboard"
           element={

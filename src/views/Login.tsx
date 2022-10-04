@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { getLogin, logOut, getLoginAsync } from "./../store/authSlice";
 
@@ -10,14 +11,29 @@ const Login = () => {
   });
   const { login } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
+  let navigate = useNavigate();
+
   const handelSubmit = (e: any) => {
     e.preventDefault();
     // @ts-ignore
-    dispatch(getLoginAsync(dataLogin));
+    dispatch(getLogin(dataLogin));
+
+    // dispatch(getLoginAsync(dataLogin));
   };
+
+  useEffect(() => {
+    console.log(`login`, login);
+    if (login) {
+      console.log("redirect...");
+      navigate("/dashboard");
+      // redirect(`/dashboard`);
+    }
+  }, [login]);
+
   const handelChange = (e: any) => {
     setDataLogin({ ...dataLogin, [e.target.name]: e.target.value });
   };
+
   return (
     <div>
       {!login ? (
