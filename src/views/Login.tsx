@@ -35,6 +35,10 @@ const Login = () => {
     setDataLogin({ ...dataLogin, [e.target.name]: e.target.value });
   };
 
+  const signUp = () => {
+    navigate("/sign-in");
+  };
+
   return (
     <div>
       {!login ? (
@@ -52,7 +56,9 @@ const Login = () => {
             value={dataLogin.password}
           />
           <button type="submit">login</button>
+          <button onClick={signUp}>Sign Up</button>
         </form>
+        
       ) : (
         <button
           onClick={() => {

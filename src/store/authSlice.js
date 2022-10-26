@@ -42,11 +42,10 @@ export const authSlice = createSlice({
     //   state.user = action.payload;
     //   //localStorage.setItem('user',action.payload)
     // },
+
     logOut: (state, action) => {
       localStorage.removeItem("access_token");
-      //   token = localStorage.getItem("access_token");
-      //   console.log(token);
-      //   console.log(initialState);
+
       return {
         login: false,
         user: "",
@@ -54,7 +53,7 @@ export const authSlice = createSlice({
         status: "idle",
         error: null,
       };
-    //   return initialState;
+      // return initialState;
     },
   },
 
