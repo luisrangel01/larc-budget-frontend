@@ -28,10 +28,12 @@ export const listSlice = createSlice({
     },
     extraReducers: {
         [getListAsync.fulfilled]: (state, action) => {
+            console.log(`korn`)
             state.listUser = action.payload;
         }
     }
 })
+
 export const { getList } = listSlice.actions;
 
 export default listSlice.reducer;

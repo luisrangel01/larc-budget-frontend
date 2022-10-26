@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { getLogin, logOut, getLoginAsync } from "./../store/authSlice";
+// import { getLogin, logOut, getLoginAsync } from "./../store/authSlice";
+import { logOut, getLoginAsync } from "./../store/authSlice";
 
 const Login = () => {
   const [dataLogin, setDataLogin] = useState({
@@ -16,9 +17,9 @@ const Login = () => {
   const handelSubmit = (e: any) => {
     e.preventDefault();
     // @ts-ignore
-    dispatch(getLogin(dataLogin));
+    // dispatch(getLogin(dataLogin));
 
-    // dispatch(getLoginAsync(dataLogin));
+    dispatch(getLoginAsync(dataLogin));
   };
 
   useEffect(() => {
