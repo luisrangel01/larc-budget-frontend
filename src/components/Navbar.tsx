@@ -2,29 +2,29 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { logOut } from "./../store/authSlice";
+import { signOut } from "./../store/authSlice";
 
 const Navbar = () => {
-  const { login } = useSelector((state: any) => state.auth);
+  const {  signIn } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
   useEffect(() => {
-    console.log(`login`, login);
-    if (!login) {
+    console.log(`sign in`, signIn);
+    if (!signIn) {
       console.log("redirect...");
-      navigate("/login");
+      navigate("/sign-in");
       // redirect(`/dashboard`);
     }
-  }, [login]);
+  }, [signIn]);
 
   const home = () => {
     navigate("/home");
   };
 
-  const logout = () => {
+  const signOutNow = () => {
     // @ts-ignore
-    dispatch(logOut());
+    dispatch(signOut());
   };
 
   return (
@@ -36,9 +36,9 @@ const Navbar = () => {
     >
       <Link to="/home">Home</Link>
       <Link to="/dashboard">Dashboard</Link>
-      <Link to="/login">login</Link>
+      <Link to="/sign-in">Sign In</Link>
       <button onClick={home}>Home</button>
-      <button onClick={logout}>Log Out</button>
+      <button onClick={signOutNow}>Sign Out</button>
     </div>
   );
 };

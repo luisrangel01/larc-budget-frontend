@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getLoginAsync = createAsyncThunk(
-  "auth/getLoginAsync",
+export const getSignInAsync = createAsyncThunk(
+  "auth/getSignInAsync",
   async (data) => {
     const body = { username: data.email, password: data.password };
 
@@ -24,7 +24,7 @@ export const getLoginAsync = createAsyncThunk(
 const token = localStorage.getItem("access_token");
 
 const initialState = {
-  login: token ? true : false,
+  signIn: token ? true : false,
   user: "",
   token: token ? token : null,
   status: "idle",
@@ -36,18 +36,18 @@ export const authSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    // getLogin: (state, action) => {
+    // getSignIn: (state, action) => {
     //   console.log(`action:`, action);
-    //   state.login = true;
+    //   state.signIn = true;
     //   state.user = action.payload;
     //   //localStorage.setItem('user',action.payload)
     // },
 
-    logOut: (state, action) => {
+    signOut: (state, action) => {
       localStorage.removeItem("access_token");
 
       return {
-        login: false,
+        signIn: false,
         user: "",
         token: null,
         status: "idle",
@@ -58,26 +58,27 @@ export const authSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(getLoginAsync.pending, (state, action) => {
-      console.log(`xxx getLoginAsync.pending...`);
+    builder.addCase(getSignInAsync.pending, (state, action) => {
+      console.log(`xxx getSignInAsync.pending...`);
       state.status = "loading";
     });
 
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(getLoginAsync.fulfilled, (state, action) => {
-      console.log(`xxx getLoginAsync.fulfilled...`);
+    builder.addCase(getSignInAsync.fulfilled, (state, action) => {
+      console.log(`xxx getSignInAsync.fulfilled...`);
+      console.log(`action.payload?.status:`,action.payload?.status);
       state.status = "succeeded";
       // Add user to the state array
       if (action.payload?.status === 201) {
         state.token = action.payload.accessToken;
-        state.login = action.payload.accessToken ? true : false;
+        state.signIn = action.payload.accessToken ? true : false;
         localStorage.setItem("access_token", action.payload.accessToken);
       }
       //   state.entities.push(action.payload)
     });
 
-    builder.addCase(getLoginAsync.rejected, (state, action) => {
-      console.log(`xxx getLoginAsync.rejected...`);
+    builder.addCase(getSignInAsync.rejected, (state, action) => {
+      console.log(`xxx getSignInAsync.rejected...`);
       console.error(action.error);
       state.status = "failed";
       state.error = action.error.message;
@@ -85,6 +86,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { getLogin, logOut } = authSlice.actions;
+export const { getSignIn, signOut } = authSlice.actions;
 
 export default authSlice.reducer;

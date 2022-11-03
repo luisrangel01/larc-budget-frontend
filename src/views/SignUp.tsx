@@ -19,8 +19,8 @@ const SignUp = (props: any) => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
   };
 
-  const logIn = () => {
-    navigate("/login");
+  const signIn = () => {
+    navigate("/sign-in");
   };
 
   // if (authMode === "signin") {
@@ -72,8 +72,8 @@ const SignUp = (props: any) => {
           <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">
             Already registered?{" "}
-            <span className="link-primary" onClick={logIn}>
-              Log In
+            <span className="link-primary" onClick={signIn}>
+              Sign In
             </span>
           </div>
           <div className="form-group mt-3">

@@ -1,17 +1,17 @@
 // const initialState = {
-//     login: token ? true : false,
+//     signIn: token ? true : false,
 //     user: '',
 //     token: token ? token : null,
 // }
 
-// export const getLogin = (state, action) => {
+// export const getSignIn = (state, action) => {
 //   console.log(action);
-//   state.login = true;
+//   state.signIn = true;
 //   state.user = action.payload;
 //   //localStorage.setItem('user',action.payload)
 // };
 
-// export const logOut = (state, action) => {
+// export const signOut = (state, action) => {
 //   localStorage.removeItem("access_token");
 //   return initialState;
 // };

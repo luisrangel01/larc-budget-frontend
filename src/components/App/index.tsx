@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css"
 
-import { getLogin } from "../../store/authSlice";
+import { getSignIn } from "../../store/authSlice";
 import Navbar from "../../components/Navbar";
 import RouteProtector from "../../components/RouteProtector";
 import Home from "../../views/Home";
 import Dashboard from "../../views/Dashboard";
 import NotFound from "../../views/NotFound";
-import Login from "../../views/Login";
+import SignIn from "../../views/SignIn";
 import SignUp from "../../views/SignUp";
 
 import "./App.css";
@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const user = localStorage.getItem('user')
     if (user) {
-      //dispatch(getLogin(user))
+      //dispatch(getSignIn(user))
     }
   }, [])*/
   return (
@@ -37,7 +37,7 @@ function App() {
               </RouteProtector>
             }
           />
-          <Route path="/login" element={<Login />} />
+          <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route
             path="/home"
