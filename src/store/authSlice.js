@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import jwt_decode from "jwt-decode";
 
 export const getSignInAsync = createAsyncThunk(
   "auth/getSignInAsync",
@@ -25,7 +26,7 @@ const token = localStorage.getItem("access_token");
 
 const initialState = {
   signIn: token ? true : false,
-  user: "",
+  user: { username: "", userId: "" },
   token: token ? token : null,
   status: "idle",
   error: null,
@@ -48,7 +49,7 @@ export const authSlice = createSlice({
 
       return {
         signIn: false,
-        user: "",
+        user: { username: "", userId: "" },
         token: null,
         status: "idle",
         error: null,
@@ -66,13 +67,19 @@ export const authSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getSignInAsync.fulfilled, (state, action) => {
       console.log(`xxx getSignInAsync.fulfilled...`);
-      console.log(`action.payload?.status:`,action.payload?.status);
-      state.status = "succeeded";
+      console.log(`action.payload?.status:`, action.payload?.status);
+
       // Add user to the state array
       if (action.payload?.status === 201) {
+        state.status = "succeeded";
+        const decoded = jwt_decode(action.payload.accessToken);
+        console.log(decoded);
+        state.user = decoded;
         state.token = action.payload.accessToken;
         state.signIn = action.payload.accessToken ? true : false;
         localStorage.setItem("access_token", action.payload.accessToken);
+      } else {
+        state.status = "error";
       }
       //   state.entities.push(action.payload)
     });
