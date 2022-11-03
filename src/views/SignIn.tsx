@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // import { getSignIn, signOut, getSignInAsync } from "./../store/authSlice";
-import { signOut, getSignInAsync } from "../store/authSlice";
+import { getSignInAsync } from "../store/authSlice";
 
 const SignIn = () => {
   const [dataSignIn, setDataSignIn] = useState({
@@ -85,37 +85,37 @@ const SignIn = () => {
     </div>
   );
 
-  return (
-    <div>
-      {!signIn ? (
-        <form onSubmit={handelSubmit}>
-          <input
-            placeholder="email"
-            name="email"
-            onChange={handelChange}
-            value={dataSignIn.email}
-          />
-          <input
-            placeholder="password"
-            name="password"
-            onChange={handelChange}
-            value={dataSignIn.password}
-          />
-          <button type="submit">Sign In</button>
-          <button onClick={signUp}>Sign Up</button>
-        </form>
-      ) : (
-        <button
-          onClick={() => {
-            // @ts-ignore
-            dispatch(signOut());
-          }}
-        >
-          Sign Out
-        </button>
-      )}
-    </div>
-  );
+  // return (
+  //   <div>
+  //     {!signIn ? (
+  //       <form onSubmit={handelSubmit}>
+  //         <input
+  //           placeholder="email"
+  //           name="email"
+  //           onChange={handelChange}
+  //           value={dataSignIn.email}
+  //         />
+  //         <input
+  //           placeholder="password"
+  //           name="password"
+  //           onChange={handelChange}
+  //           value={dataSignIn.password}
+  //         />
+  //         <button type="submit">Sign In</button>
+  //         <button onClick={signUp}>Sign Up</button>
+  //       </form>
+  //     ) : (
+  //       <button
+  //         onClick={() => {
+  //           // @ts-ignore
+  //           dispatch(signOut());
+  //         }}
+  //       >
+  //         Sign Out
+  //       </button>
+  //     )}
+  //   </div>
+  // );
 };
 
 export default SignIn;

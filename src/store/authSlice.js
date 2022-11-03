@@ -93,6 +93,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { getSignIn, signOut } = authSlice.actions;
+// export const { getSignIn, signOut } = authSlice.actions;
+export const { signOut } = authSlice.actions;
 
 export default authSlice.reducer;

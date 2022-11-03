@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css"
 
-import { getSignIn } from "../../store/authSlice";
+// import { getSignIn } from "../../store/authSlice";
 import Navbar from "../../components/Navbar";
 import RouteProtector from "../../components/RouteProtector";
 import Home from "../../views/Home";
