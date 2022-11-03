@@ -6,7 +6,7 @@ export const getSignInAsync = createAsyncThunk(
   async (data) => {
     const body = { username: data.email, password: data.password };
 
-    const response = await fetch("http://localhost:3002/auth/signin", {
+    const response = await fetch("http://localhost:3002/auth/sign-in", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
