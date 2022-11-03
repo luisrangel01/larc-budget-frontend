@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css"
 
 // import { getSignIn } from "../../store/authSlice";
-import Navbar from "../../components/Navbar";
+import MenuNavbar from "../MenuNavbar";
 import RouteProtector from "../../components/RouteProtector";
 import Home from "../../views/Home";
 import Dashboard from "../../views/Dashboard";
@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <Navbar /> */}
+        {/* <MenuNavbar /> */}
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           <Route

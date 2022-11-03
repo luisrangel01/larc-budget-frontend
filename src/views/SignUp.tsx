@@ -1,18 +1,13 @@
-// const SignUp = () => {
-//   return (
-//     <>
-//       <h1>Sign Up</h1>
-//     </>
-//   );
-// };
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 
 import { getSignUpAsync, resetSignUp } from "../store/authSignUpSlice";
 
 const SignUp = (props: any) => {
+  const [key, setKey] = useState("home");
   const [dataSignUp, setDataSignUp] = useState({
     email: "",
     password: "",
@@ -22,7 +17,7 @@ const SignUp = (props: any) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const handelSubmit = (e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     // @ts-ignore
@@ -50,7 +45,7 @@ const SignUp = (props: any) => {
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form" onSubmit={handelSubmit}>
+      <form className="Auth-form" onSubmit={handleSubmit}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">

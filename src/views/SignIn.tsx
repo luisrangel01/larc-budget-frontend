@@ -14,7 +14,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const handelSubmit = (e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     // @ts-ignore
     // dispatch(getSignIn(dataSignIn));
@@ -41,7 +41,7 @@ const SignIn = () => {
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form" onSubmit={handelSubmit}>
+      <form className="Auth-form" onSubmit={handleSubmit}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign In</h3>
           <div className="text-center">
@@ -84,38 +84,6 @@ const SignIn = () => {
       </form>
     </div>
   );
-
-  // return (
-  //   <div>
-  //     {!signIn ? (
-  //       <form onSubmit={handelSubmit}>
-  //         <input
-  //           placeholder="email"
-  //           name="email"
-  //           onChange={handelChange}
-  //           value={dataSignIn.email}
-  //         />
-  //         <input
-  //           placeholder="password"
-  //           name="password"
-  //           onChange={handelChange}
-  //           value={dataSignIn.password}
-  //         />
-  //         <button type="submit">Sign In</button>
-  //         <button onClick={signUp}>Sign Up</button>
-  //       </form>
-  //     ) : (
-  //       <button
-  //         onClick={() => {
-  //           // @ts-ignore
-  //           dispatch(signOut());
-  //         }}
-  //       >
-  //         Sign Out
-  //       </button>
-  //     )}
-  //   </div>
-  // );
 };
 
 export default SignIn;
