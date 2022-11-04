@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
+import { reset } from "../store/accountsSlice";
 import { signOut } from "../store/authSlice";
 
 const MenuNavbar = () => {
@@ -14,11 +15,8 @@ const MenuNavbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(`sign in`, signIn);
     if (!signIn) {
-      console.log("redirect from MenuNavbar...");
       navigate("/sign-in");
-      // redirect(`/dashboard`);
     }
   }, [signIn]);
 
@@ -26,9 +24,15 @@ const MenuNavbar = () => {
     navigate("/home");
   };
 
+  const navigateTo = (address: string) => {
+    navigate(`${address}`);
+  };
+
   const signOutNow = () => {
     // @ts-ignore
     dispatch(signOut());
+    // @ts-ignore
+    dispatch(reset());
   };
 
   return (
@@ -38,9 +42,13 @@ const MenuNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="home">Homex</Nav.Link>
-            <Nav.Link href="dashboard">Dashboard</Nav.Link>
+            <Nav.Link onClick={() => navigateTo("/home")}>
+              Home
+            </Nav.Link>
+            <Nav.Link onClick={() => navigateTo("/home")}>Homex</Nav.Link>
+            <Nav.Link onClick={() => navigateTo("/dashboard")}>
+              Dashboard
+            </Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Profile" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">

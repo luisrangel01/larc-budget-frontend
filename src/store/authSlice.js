@@ -60,20 +60,15 @@ export const authSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(getSignInAsync.pending, (state, action) => {
-      console.log(`xxx getSignInAsync.pending...`);
       state.status = "loading";
     });
 
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getSignInAsync.fulfilled, (state, action) => {
-      console.log(`xxx getSignInAsync.fulfilled...`);
-      console.log(`action.payload?.status:`, action.payload?.status);
-
       // Add user to the state array
       if (action.payload?.status === 201) {
         state.status = "succeeded";
         const decoded = jwt_decode(action.payload.accessToken);
-        console.log(decoded);
         state.user = decoded;
         state.token = action.payload.accessToken;
         state.signIn = action.payload.accessToken ? true : false;
@@ -85,7 +80,6 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(getSignInAsync.rejected, (state, action) => {
-      console.log(`xxx getSignInAsync.rejected...`);
       console.error(action.error);
       state.status = "failed";
       state.error = action.error.message;

@@ -1,13 +1,13 @@
 import React from "react";
 import MenuNavbar from "../components/MenuNavbar";
 
-const Home = () => {
+const CreateAccount = () => {
   return (
     <>
       <MenuNavbar />
-      <div>Home</div>
+      <div>Create Account</div>
     </>
   );
 };
 
-export default Home;
+export default CreateAccount;

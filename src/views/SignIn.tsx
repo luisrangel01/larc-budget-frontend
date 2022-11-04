@@ -16,9 +16,9 @@ const SignIn = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+
     // @ts-ignore
     // dispatch(getSignIn(dataSignIn));
-
     dispatch(getSignInAsync(dataSignIn));
   };
 
