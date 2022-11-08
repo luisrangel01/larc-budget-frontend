@@ -8,7 +8,7 @@ import MenuNavbar from "../MenuNavbar";
 import RouteProtector from "../../components/RouteProtector";
 import Home from "../../views/Home";
 import Dashboard from "../../views/Dashboard";
-import CreateAccount from "../../views/CreateAccount";
+import CreateCashAccount from "../../views/CreateCashAccount";
 import NotFound from "../../views/NotFound";
 import SignIn from "../../views/SignIn";
 import SignUp from "../../views/SignUp";
@@ -57,10 +57,10 @@ function App() {
             }
           />
           <Route
-            path="/create-account"
+            path="/create-cash-account"
             element={
               <RouteProtector>
-                <CreateAccount />
+                <CreateCashAccount />
               </RouteProtector>
             }
           />

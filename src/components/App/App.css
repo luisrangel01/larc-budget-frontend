@@ -76,3 +76,16 @@ label {
   font-weight: 600;
   color: rgb(34, 34, 34);
 }
+
+.img-flag {
+  width: 30px;
+}
+
+.card-img-flag {
+  width: 100px;
+}
+
+.text-number {
+  text-align: right;
+  width: 150px;
+}

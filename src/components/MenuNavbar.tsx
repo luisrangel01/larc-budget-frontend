@@ -38,17 +38,18 @@ const MenuNavbar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="home">Billeterapp</Navbar.Brand>
+        <Navbar.Brand onClick={() => navigateTo("/home")}>
+          Billeterapp
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={() => navigateTo("/home")}>
-              Home
-            </Nav.Link>
+            <Nav.Link onClick={() => navigateTo("/home")}>Home</Nav.Link>
             <Nav.Link onClick={() => navigateTo("/home")}>Homex</Nav.Link>
             <Nav.Link onClick={() => navigateTo("/dashboard")}>
               Dashboard
             </Nav.Link>
+            <Nav.Link onClick={() => navigateTo("/create-cash-account")}>Create Account</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Profile" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">

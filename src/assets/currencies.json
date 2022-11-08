@@ -1,0 +1,1079 @@
+[
+    {
+        "code": "AED",
+        "decimals": 2,
+        "name": "United Arab Emirates dirham",
+        "id": 784
+    },
+    {
+        "code": "AFN",
+        "decimals": 2,
+        "name": "Afghan afghani",
+        "id": 971
+    },
+    {
+        "code": "ALL",
+        "decimals": 2,
+        "name": "Albanian lek",
+        "id": 8
+    },
+    {
+        "code": "AMD",
+        "decimals": 2,
+        "name": "Armenian dram",
+        "id": 51
+    },
+    {
+        "code": "ANG",
+        "decimals": 2,
+        "name": "Netherlands Antillean guilder",
+        "id": 532
+    },
+    {
+        "code": "AOA",
+        "decimals": 2,
+        "name": "Angolan kwanza",
+        "id": 973
+    },
+    {
+        "code": "ARS",
+        "decimals": 2,
+        "name": "Argentine peso",
+        "id": 32,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/46px-Flag_of_Argentina.svg.png"
+    },
+    {
+        "code": "AUD",
+        "decimals": 2,
+        "name": "Australian dollar",
+        "id": 36
+    },
+    {
+        "code": "AWG",
+        "decimals": 2,
+        "name": "Aruban florin",
+        "id": 533
+    },
+    {
+        "code": "AZN",
+        "decimals": 2,
+        "name": "Azerbaijani manat",
+        "id": 944
+    },
+    {
+        "code": "BAM",
+        "decimals": 2,
+        "name": "Bosnia and Herzegovina convertible mark",
+        "id": 977
+    },
+    {
+        "code": "BBD",
+        "decimals": 2,
+        "name": "Barbados dollar",
+        "id": 52
+    },
+    {
+        "code": "BDT",
+        "decimals": 2,
+        "name": "Bangladeshi taka",
+        "id": 50
+    },
+    {
+        "code": "BGN",
+        "decimals": 2,
+        "name": "Bulgarian lev",
+        "id": 975
+    },
+    {
+        "code": "BHD",
+        "decimals": 3,
+        "name": "Bahraini dinar",
+        "id": 48
+    },
+    {
+        "code": "BIF",
+        "decimals": 0,
+        "name": "Burundian franc",
+        "id": 108
+    },
+    {
+        "code": "BMD",
+        "decimals": 2,
+        "name": "Bermudian dollar (customarily known as Bermuda dollar)",
+        "id": 60
+    },
+    {
+        "code": "BND",
+        "decimals": 2,
+        "name": "Brunei dollar",
+        "id": 96
+    },
+    {
+        "code": "BOB",
+        "decimals": 2,
+        "name": "Boliviano",
+        "id": 68
+    },
+    {
+        "code": "BOV",
+        "decimals": 2,
+        "name": "Bolivian Mvdol (funds code)",
+        "id": 984
+    },
+    {
+        "code": "BRL",
+        "decimals": 2,
+        "name": "Brazilian real",
+        "id": 986
+    },
+    {
+        "code": "BSD",
+        "decimals": 2,
+        "name": "Bahamian dollar",
+        "id": 44
+    },
+    {
+        "code": "BTN",
+        "decimals": 2,
+        "name": "Bhutanese ngultrum",
+        "id": 64
+    },
+    {
+        "code": "BWP",
+        "decimals": 2,
+        "name": "Botswana pula",
+        "id": 72
+    },
+    {
+        "code": "BYR",
+        "decimals": 0,
+        "name": "Belarusian ruble",
+        "id": 974
+    },
+    {
+        "code": "BZD",
+        "decimals": 2,
+        "name": "Belize dollar",
+        "id": 84
+    },
+    {
+        "code": "CAD",
+        "decimals": 2,
+        "name": "Canadian dollar",
+        "id": 124
+    },
+    {
+        "code": "CDF",
+        "decimals": 2,
+        "name": "Congolese franc",
+        "id": 976
+    },
+    {
+        "code": "CHE",
+        "decimals": 2,
+        "name": "WIR Euro (complementary currency)",
+        "id": 947
+    },
+    {
+        "code": "CHF",
+        "decimals": 2,
+        "name": "Swiss franc",
+        "id": 756
+    },
+    {
+        "code": "CHW",
+        "decimals": 2,
+        "name": "WIR Franc (complementary currency)",
+        "id": 948
+    },
+    {
+        "code": "CLF",
+        "decimals": 0,
+        "name": "Unidad de Fomento (funds code)",
+        "id": 990
+    },
+    {
+        "code": "CLP",
+        "decimals": 0,
+        "name": "Chilean peso",
+        "id": 152
+    },
+    {
+        "code": "CNY",
+        "decimals": 2,
+        "name": "Chinese yuan",
+        "id": 156
+    },
+    {
+        "code": "COP",
+        "decimals": 2,
+        "name": "Colombian peso",
+        "id": 170
+    },
+    {
+        "code": "COU",
+        "decimals": 2,
+        "name": "Unidad de Valor Real",
+        "id": 970
+    },
+    {
+        "code": "CRC",
+        "decimals": 2,
+        "name": "Costa Rican colon",
+        "id": 6,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Costa_Rica.svg/46px-Flag_of_Costa_Rica.svg.png"
+    },
+    {
+        "code": "CUC",
+        "decimals": 2,
+        "name": "Cuban convertible peso",
+        "id": 931
+    },
+    {
+        "code": "CUP",
+        "decimals": 2,
+        "name": "Cuban peso",
+        "id": 192
+    },
+    {
+        "code": "CVE",
+        "decimals": 0,
+        "name": "Cape Verde escudo",
+        "id": 132
+    },
+    {
+        "code": "CZK",
+        "decimals": 2,
+        "name": "Czech koruna",
+        "id": 203
+    },
+    {
+        "code": "DJF",
+        "decimals": 0,
+        "name": "Djiboutian franc",
+        "id": 262
+    },
+    {
+        "code": "DKK",
+        "decimals": 2,
+        "name": "Danish krone",
+        "id": 208
+    },
+    {
+        "code": "DOP",
+        "decimals": 2,
+        "name": "Dominican peso",
+        "id": 214
+    },
+    {
+        "code": "DZD",
+        "decimals": 2,
+        "name": "Algerian dinar",
+        "id": 12
+    },
+    {
+        "code": "EGP",
+        "decimals": 2,
+        "name": "Egyptian pound",
+        "id": 818
+    },
+    {
+        "code": "ERN",
+        "decimals": 2,
+        "name": "Eritrean nakfa",
+        "id": 232
+    },
+    {
+        "code": "ETB",
+        "decimals": 2,
+        "name": "Ethiopian birr",
+        "id": 230
+    },
+    {
+        "code": "EUR",
+        "decimals": 2,
+        "name": "Euro",
+        "id": 978
+    },
+    {
+        "code": "FJD",
+        "decimals": 2,
+        "name": "Fiji dollar",
+        "id": 242
+    },
+    {
+        "code": "FKP",
+        "decimals": 2,
+        "name": "Falkland Islands pound",
+        "id": 238
+    },
+    {
+        "code": "GBP",
+        "decimals": 2,
+        "name": "Pound sterling",
+        "id": 826
+    },
+    {
+        "code": "GEL",
+        "decimals": 2,
+        "name": "Georgian lari",
+        "id": 981
+    },
+    {
+        "code": "GHS",
+        "decimals": 2,
+        "name": "Ghanaian cedi",
+        "id": 936
+    },
+    {
+        "code": "GIP",
+        "decimals": 2,
+        "name": "Gibraltar pound",
+        "id": 292
+    },
+    {
+        "code": "GMD",
+        "decimals": 2,
+        "name": "Gambian dalasi",
+        "id": 270
+    },
+    {
+        "code": "GNF",
+        "decimals": 0,
+        "name": "Guinean franc",
+        "id": 324
+    },
+    {
+        "code": "GTQ",
+        "decimals": 2,
+        "name": "Guatemalan quetzal",
+        "id": 1,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Flag_of_Guatemala.svg/46px-Flag_of_Guatemala.svg.png"
+    },
+    {
+        "code": "GYD",
+        "decimals": 2,
+        "name": "Guyanese dollar",
+        "id": 328
+    },
+    {
+        "code": "HKD",
+        "decimals": 2,
+        "name": "Hong Kong dollar",
+        "id": 344
+    },
+    {
+        "code": "HNL",
+        "decimals": 2,
+        "name": "Honduran lempira",
+        "id": 4,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Flag_of_Honduras.svg/46px-Flag_of_Honduras.svg.png"
+    },
+    {
+        "code": "HRK",
+        "decimals": 2,
+        "name": "Croatian kuna",
+        "id": 191
+    },
+    {
+        "code": "HTG",
+        "decimals": 2,
+        "name": "Haitian gourde",
+        "id": 332
+    },
+    {
+        "code": "HUF",
+        "decimals": 2,
+        "name": "Hungarian forint",
+        "id": 348
+    },
+    {
+        "code": "IDR",
+        "decimals": 2,
+        "name": "Indonesian rupiah",
+        "id": 360
+    },
+    {
+        "code": "ILS",
+        "decimals": 2,
+        "name": "Israeli new shekel",
+        "id": 376
+    },
+    {
+        "code": "INR",
+        "decimals": 2,
+        "name": "Indian rupee",
+        "id": 356
+    },
+    {
+        "code": "IQD",
+        "decimals": 3,
+        "name": "Iraqi dinar",
+        "id": 368
+    },
+    {
+        "code": "IRR",
+        "decimals": 0,
+        "name": "Iranian rial",
+        "id": 364
+    },
+    {
+        "code": "ISK",
+        "decimals": 0,
+        "name": "Icelandic króna",
+        "id": 352
+    },
+    {
+        "code": "JMD",
+        "decimals": 2,
+        "name": "Jamaican dollar",
+        "id": 388
+    },
+    {
+        "code": "JOD",
+        "decimals": 3,
+        "name": "Jordanian dinar",
+        "id": 400
+    },
+    {
+        "code": "JPY",
+        "decimals": 0,
+        "name": "Japanese yen",
+        "id": 392
+    },
+    {
+        "code": "KES",
+        "decimals": 2,
+        "name": "Kenyan shilling",
+        "id": 404
+    },
+    {
+        "code": "KGS",
+        "decimals": 2,
+        "name": "Kyrgyzstani som",
+        "id": 417
+    },
+    {
+        "code": "KHR",
+        "decimals": 2,
+        "name": "Cambodian riel",
+        "id": 116
+    },
+    {
+        "code": "KMF",
+        "decimals": 0,
+        "name": "Comoro franc",
+        "id": 174
+    },
+    {
+        "code": "KPW",
+        "decimals": 0,
+        "name": "North Korean won",
+        "id": 408
+    },
+    {
+        "code": "KRW",
+        "decimals": 0,
+        "name": "South Korean won",
+        "id": 410
+    },
+    {
+        "code": "KWD",
+        "decimals": 3,
+        "name": "Kuwaiti dinar",
+        "id": 414
+    },
+    {
+        "code": "KYD",
+        "decimals": 2,
+        "name": "Cayman Islands dollar",
+        "id": 136
+    },
+    {
+        "code": "KZT",
+        "decimals": 2,
+        "name": "Kazakhstani tenge",
+        "id": 398
+    },
+    {
+        "code": "LAK",
+        "decimals": 0,
+        "name": "Lao kip",
+        "id": 418
+    },
+    {
+        "code": "LBP",
+        "decimals": 0,
+        "name": "Lebanese pound",
+        "id": 422
+    },
+    {
+        "code": "LKR",
+        "decimals": 2,
+        "name": "Sri Lankan rupee",
+        "id": 144
+    },
+    {
+        "code": "LRD",
+        "decimals": 2,
+        "name": "Liberian dollar",
+        "id": 430
+    },
+    {
+        "code": "LSL",
+        "decimals": 2,
+        "name": "Lesotho loti",
+        "id": 426
+    },
+    {
+        "code": "LTL",
+        "decimals": 2,
+        "name": "Lithuanian litas",
+        "id": 440
+    },
+    {
+        "code": "LVL",
+        "decimals": 2,
+        "name": "Latvian lats",
+        "id": 428
+    },
+    {
+        "code": "LYD",
+        "decimals": 3,
+        "name": "Libyan dinar",
+        "id": 434
+    },
+    {
+        "code": "MAD",
+        "decimals": 2,
+        "name": "Moroccan dirham",
+        "id": 504
+    },
+    {
+        "code": "MDL",
+        "decimals": 2,
+        "name": "Moldovan leu",
+        "id": 498
+    },
+    {
+        "code": "MGA",
+        "decimals": 0,
+        "name": "Malagasy ariary",
+        "id": 969
+    },
+    {
+        "code": "MKD",
+        "decimals": 0,
+        "name": "Macedonian denar",
+        "id": 807
+    },
+    {
+        "code": "MMK",
+        "decimals": 0,
+        "name": "Myanma kyat",
+        "id": 104
+    },
+    {
+        "code": "MNT",
+        "decimals": 2,
+        "name": "Mongolian tugrik",
+        "id": 496
+    },
+    {
+        "code": "MOP",
+        "decimals": 2,
+        "name": "Macanese pataca",
+        "id": 446
+    },
+    {
+        "code": "MRO",
+        "decimals": 0,
+        "name": "Mauritanian ouguiya",
+        "id": 478
+    },
+    {
+        "code": "MUR",
+        "decimals": 2,
+        "name": "Mauritian rupee",
+        "id": 480
+    },
+    {
+        "code": "MVR",
+        "decimals": 2,
+        "name": "Maldivian rufiyaa",
+        "id": 462
+    },
+    {
+        "code": "MWK",
+        "decimals": 2,
+        "name": "Malawian kwacha",
+        "id": 454
+    },
+    {
+        "code": "MXN",
+        "decimals": 2,
+        "name": "Mexican peso",
+        "id": 3,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/46px-Flag_of_Mexico.svg.png"
+    },
+    {
+        "code": "MXV",
+        "decimals": 2,
+        "name": "Mexican Unidad de Inversion (UDI) (funds code)",
+        "id": 979,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/46px-Flag_of_Mexico.svg.png"
+    },
+    {
+        "code": "MYR",
+        "decimals": 2,
+        "name": "Malaysian ringgit",
+        "id": 458
+    },
+    {
+        "code": "MZN",
+        "decimals": 2,
+        "name": "Mozambican metical",
+        "id": 943
+    },
+    {
+        "code": "NAD",
+        "decimals": 2,
+        "name": "Namibian dollar",
+        "id": 516
+    },
+    {
+        "code": "NGN",
+        "decimals": 2,
+        "name": "Nigerian naira",
+        "id": 566
+    },
+    {
+        "code": "NIO",
+        "decimals": 2,
+        "name": "Nicaraguan córdoba",
+        "id": 5,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Nicaragua.svg/46px-Flag_of_Nicaragua.svg.png"
+    },
+    {
+        "code": "NOK",
+        "decimals": 2,
+        "name": "Norwegian krone",
+        "id": 578
+    },
+    {
+        "code": "NPR",
+        "decimals": 2,
+        "name": "Nepalese rupee",
+        "id": 524
+    },
+    {
+        "code": "NZD",
+        "decimals": 2,
+        "name": "New Zealand dollar",
+        "id": 554
+    },
+    {
+        "code": "OMR",
+        "decimals": 3,
+        "name": "Omani rial",
+        "id": 512
+    },
+    {
+        "code": "PAB",
+        "decimals": 2,
+        "name": "Panamanian balboa",
+        "id": 7,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Flag_of_Panama.svg/45px-Flag_of_Panama.svg.png"
+    },
+    {
+        "code": "PEN",
+        "decimals": 2,
+        "name": "Peruvian nuevo sol",
+        "id": 604
+    },
+    {
+        "code": "PGK",
+        "decimals": 2,
+        "name": "Papua New Guinean kina",
+        "id": 598
+    },
+    {
+        "code": "PHP",
+        "decimals": 2,
+        "name": "Philippine peso",
+        "id": 608
+    },
+    {
+        "code": "PKR",
+        "decimals": 2,
+        "name": "Pakistani rupee",
+        "id": 586
+    },
+    {
+        "code": "PLN",
+        "decimals": 2,
+        "name": "Polish złoty",
+        "id": 985
+    },
+    {
+        "code": "PYG",
+        "decimals": 0,
+        "name": "Paraguayan guaraní",
+        "id": 600
+    },
+    {
+        "code": "QAR",
+        "decimals": 2,
+        "name": "Qatari riyal",
+        "id": 634
+    },
+    {
+        "code": "RON",
+        "decimals": 2,
+        "name": "Romanian new leu",
+        "id": 946
+    },
+    {
+        "code": "RSD",
+        "decimals": 2,
+        "name": "Serbian dinar",
+        "id": 941
+    },
+    {
+        "code": "RUB",
+        "decimals": 2,
+        "name": "Russian rouble",
+        "id": 643
+    },
+    {
+        "code": "RWF",
+        "decimals": 0,
+        "name": "Rwandan franc",
+        "id": 646
+    },
+    {
+        "code": "SAR",
+        "decimals": 2,
+        "name": "Saudi riyal",
+        "id": 682
+    },
+    {
+        "code": "SBD",
+        "decimals": 2,
+        "name": "Solomon Islands dollar",
+        "id": 90
+    },
+    {
+        "code": "SCR",
+        "decimals": 2,
+        "name": "Seychelles rupee",
+        "id": 690
+    },
+    {
+        "code": "SDG",
+        "decimals": 2,
+        "name": "Sudanese pound",
+        "id": 938
+    },
+    {
+        "code": "SEK",
+        "decimals": 2,
+        "name": "Swedish krona/kronor",
+        "id": 752
+    },
+    {
+        "code": "SGD",
+        "decimals": 2,
+        "name": "Singapore dollar",
+        "id": 702
+    },
+    {
+        "code": "SHP",
+        "decimals": 2,
+        "name": "Saint Helena pound",
+        "id": 654
+    },
+    {
+        "code": "SLL",
+        "decimals": 0,
+        "name": "Sierra Leonean leone",
+        "id": 694
+    },
+    {
+        "code": "SOS",
+        "decimals": 2,
+        "name": "Somali shilling",
+        "id": 706
+    },
+    {
+        "code": "SRD",
+        "decimals": 2,
+        "name": "Surinamese dollar",
+        "id": 968
+    },
+    {
+        "code": "SSP",
+        "decimals": 2,
+        "name": "South Sudanese pound",
+        "id": 728
+    },
+    {
+        "code": "STD",
+        "decimals": 0,
+        "name": "São Tomé and Príncipe dobra",
+        "id": 678
+    },
+    {
+        "code": "SYP",
+        "decimals": 2,
+        "name": "Syrian pound",
+        "id": 760
+    },
+    {
+        "code": "SZL",
+        "decimals": 2,
+        "name": "Swazi lilangeni",
+        "id": 748
+    },
+    {
+        "code": "THB",
+        "decimals": 2,
+        "name": "Thai baht",
+        "id": 764
+    },
+    {
+        "code": "TJS",
+        "decimals": 2,
+        "name": "Tajikistani somoni",
+        "id": 972
+    },
+    {
+        "code": "TMT",
+        "decimals": 2,
+        "name": "Turkmenistani manat",
+        "id": 934
+    },
+    {
+        "code": "TND",
+        "decimals": 3,
+        "name": "Tunisian dinar",
+        "id": 788
+    },
+    {
+        "code": "TOP",
+        "decimals": 2,
+        "name": "Tongan paʻanga",
+        "id": 776
+    },
+    {
+        "code": "TRY",
+        "decimals": 2,
+        "name": "Turkish lira",
+        "id": 949
+    },
+    {
+        "code": "TTD",
+        "decimals": 2,
+        "name": "Trinidad and Tobago dollar",
+        "id": 780
+    },
+    {
+        "code": "TWD",
+        "decimals": 2,
+        "name": "New Taiwan dollar",
+        "id": 901
+    },
+    {
+        "code": "TZS",
+        "decimals": 2,
+        "name": "Tanzanian shilling",
+        "id": 834
+    },
+    {
+        "code": "UAH",
+        "decimals": 2,
+        "name": "Ukrainian hryvnia",
+        "id": 980
+    },
+    {
+        "code": "UGX",
+        "decimals": 2,
+        "name": "Ugandan shilling",
+        "id": 800
+    },
+    {
+        "code": "USD",
+        "decimals": 2,
+        "name": "United States dollar",
+        "id": 2,
+        "flagUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/46px-Flag_of_the_United_States.svg.png"
+    },
+    {
+        "code": "USN",
+        "decimals": 2,
+        "name": "United States dollar (next day) (funds code)",
+        "id": 997
+    },
+    {
+        "code": "USS",
+        "decimals": 2,
+        "name": "United States dollar (same day) (funds code) (one source[who?] claims it is no longer used, but it is still on the ISO 4217-MA list)",
+        "id": 998
+    },
+    {
+        "code": "UYI",
+        "decimals": 0,
+        "name": "Uruguay Peso en Unidades Indexadas (URUIURUI) (funds code)",
+        "id": 940
+    },
+    {
+        "code": "UYU",
+        "decimals": 2,
+        "name": "Uruguayan peso",
+        "id": 858
+    },
+    {
+        "code": "UZS",
+        "decimals": 2,
+        "name": "Uzbekistan som",
+        "id": 860
+    },
+    {
+        "code": "VEF",
+        "decimals": 2,
+        "name": "Venezuelan bolívar fuerte",
+        "id": 937
+    },
+    {
+        "code": "VND",
+        "decimals": 0,
+        "name": "Vietnamese dong",
+        "id": 704
+    },
+    {
+        "code": "VUV",
+        "decimals": 0,
+        "name": "Vanuatu vatu",
+        "id": 548
+    },
+    {
+        "code": "WST",
+        "decimals": 2,
+        "name": "Samoan tala",
+        "id": 882
+    },
+    {
+        "code": "XAF",
+        "decimals": 0,
+        "name": "CFA franc BEAC",
+        "id": 950
+    },
+    {
+        "code": "XAG",
+        "decimals": null,
+        "name": "Silver (one troy ounce)",
+        "id": 961
+    },
+    {
+        "code": "XAU",
+        "decimals": null,
+        "name": "Gold (one troy ounce)",
+        "id": 959
+    },
+    {
+        "code": "XBA",
+        "decimals": null,
+        "name": "European Composite Unit (EURCO) (bond market unit)",
+        "id": 955
+    },
+    {
+        "code": "XBB",
+        "decimals": null,
+        "name": "European Monetary Unit (E.M.U.-6) (bond market unit)",
+        "id": 956
+    },
+    {
+        "code": "XBC",
+        "decimals": null,
+        "name": "European Unit of Account 9 (E.U.A.-9) (bond market unit)",
+        "id": 957
+    },
+    {
+        "code": "XBD",
+        "decimals": null,
+        "name": "European Unit of Account 17 (E.U.A.-17) (bond market unit)",
+        "id": 958
+    },
+    {
+        "code": "XCD",
+        "decimals": 2,
+        "name": "East Caribbean dollar",
+        "id": 951
+    },
+    {
+        "code": "XDR",
+        "decimals": null,
+        "name": "Special drawing rights",
+        "id": 960
+    },
+    {
+        "code": "XFU",
+        "decimals": null,
+        "name": "UIC franc (special settlement currency)",
+        "id": 961
+    },
+    {
+        "code": "XOF",
+        "decimals": 0,
+        "name": "CFA franc BCEAO",
+        "id": 952
+    },
+    {
+        "code": "XPD",
+        "decimals": null,
+        "name": "Palladium (one troy ounce)",
+        "id": 964
+    },
+    {
+        "code": "XPF",
+        "decimals": 0,
+        "name": "CFP franc",
+        "id": 953
+    },
+    {
+        "code": "XPT",
+        "decimals": null,
+        "name": "Platinum (one troy ounce)",
+        "id": 962
+    },
+    {
+        "code": "XTS",
+        "decimals": null,
+        "name": "Code reserved for testing purposes",
+        "id": 963
+    },
+    {
+        "code": "XXX",
+        "decimals": null,
+        "name": "No currency",
+        "id": 999
+    },
+    {
+        "code": "YER",
+        "decimals": 2,
+        "name": "Yemeni rial",
+        "id": 886
+    },
+    {
+        "code": "ZAR",
+        "decimals": 2,
+        "name": "South African rand",
+        "id": 710
+    },
+    {
+        "code": "ZMW",
+        "decimals": 2,
+        "name": "Zambian kwacha",
+        "id": 967
+    }
+]
