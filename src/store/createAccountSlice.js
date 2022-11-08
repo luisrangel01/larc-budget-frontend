@@ -1,10 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getAccountsAsync = createAsyncThunk(
-  "userAccounts/getAccountsAsync",
-  async () => {
+export const createAccountAsync = createAsyncThunk(
+  "createAccount/createAccountAsync",
+  async (data) => {
+    const body = {
+      name: data.name,
+      type: data.type,
+      currency: data.currency,
+      currentBalance: data.currentBalance,
+      color: data.color,
+    };
+
     const init = {
-      method: "GET",
+      method: "POST",
+      body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
         authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -14,7 +23,7 @@ export const getAccountsAsync = createAsyncThunk(
     const response = await fetch("http://localhost:3002/accounts", init).then(
       async (data) => {
         const result = await data.json();
-        const toReturn = { accounts: result, status: data.status };
+        const toReturn = { account: result, status: data.status };
 
         return toReturn;
       }
@@ -25,42 +34,45 @@ export const getAccountsAsync = createAsyncThunk(
 );
 
 const initialState = {
-  accounts: [],
+  account: {},
+  accountId: "",
   status: "idle",
   error: null,
 };
 
-export const accountsSlice = createSlice({
-  name: "userAccounts",
+export const createAccountSlice = createSlice({
+  name: "createAccount",
   initialState: initialState,
 
   reducers: {
     reset: (state, action) => {
       return {
         status: "idle",
-        accounts: [],
+        account: {},
+        accountId: "",
         error: null,
       };
     },
   },
 
   extraReducers: (builder) => {
-    builder.addCase(getAccountsAsync.pending, (state, action) => {
+    builder.addCase(createAccountAsync.pending, (state, action) => {
       state.status = "loading";
     });
 
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(getAccountsAsync.fulfilled, (state, action) => {
+    builder.addCase(createAccountAsync.fulfilled, (state, action) => {
       // Add user to the state array
-      if (action.payload?.status === 200) {
+      if (action.payload?.status === 201) {
         state.status = "succeeded";
-        state.accounts = [...action.payload.accounts];
+        state.accountId = action.payload.account.id;
+        state.account = { ...action.payload.account };
       } else {
         state.status = "error";
       }
     });
 
-    builder.addCase(getAccountsAsync.rejected, (state, action) => {
+    builder.addCase(createAccountAsync.rejected, (state, action) => {
       console.error(action.error);
       state.status = "failed";
       state.error = action.error.message;
@@ -68,6 +80,6 @@ export const accountsSlice = createSlice({
   },
 });
 
-export const { reset } = accountsSlice.actions;
+export const { reset } = createAccountSlice.actions;
 
-export default accountsSlice.reducer;
+export default createAccountSlice.reducer;

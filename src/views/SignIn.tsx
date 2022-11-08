@@ -23,11 +23,8 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    console.log(`signIn`, signIn);
     if (signIn) {
-      console.log("redirect...");
       navigate("/dashboard");
-      // redirect(`/dashboard`);
     }
   }, [signIn]);
 

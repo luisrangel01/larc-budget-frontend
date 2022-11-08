@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import Stack from "react-bootstrap/Stack";
 import Card from "react-bootstrap/Card";
@@ -10,6 +12,8 @@ import MenuNavbar from "../components/MenuNavbar";
 import dataCurrencies from "../assets/currencies.json";
 import { ICurrency } from "../interfaces/currency.interface";
 
+import { createAccountAsync } from "../store/createAccountSlice";
+
 const CreateCashAccount = () => {
   const [key, setKey] = useState("home");
   const [currencies, setCurrencies] = useState<ICurrency[]>([]);
@@ -19,9 +23,15 @@ const CreateCashAccount = () => {
     id: 0,
   });
   const [dataCashAccount, setDataCashAccount] = useState({
-    cashBalance: 0,
-    password: "",
+    currentBalance: 0,
+    type: "CASH",
+    name: "CASH",
+    color: "BLUE",
+    currency: "",
   });
+  const { accountId } = useSelector((state: any) => state.createAccount);
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const getData = () => {
     const array: ICurrency[] = dataCurrencies;
@@ -36,6 +46,16 @@ const CreateCashAccount = () => {
     getData();
   }, []);
 
+  useEffect(() => {
+    setDataCashAccount({ ...dataCashAccount, currency: currency.code });
+  }, [currency]);
+
+  useEffect(() => {
+    if (accountId.length !== 0) {
+      navigate("/dashboard");
+    }
+  }, [accountId]);
+
   const handleSelect = (e: any) => {
     const currencyFind = currencies.find((currency) => currency.code === e);
     if (currencyFind) {
@@ -48,8 +68,11 @@ const CreateCashAccount = () => {
   };
 
   const finish = () => {
-
-  }
+    console.log(dataCashAccount);
+    // @ts-ignore
+    // dispatch(getSignIn(dataSignIn));
+    dispatch(createAccountAsync(dataCashAccount));
+  };
 
   return (
     <>
@@ -105,10 +128,6 @@ const CreateCashAccount = () => {
                 </div>
                 <Card.Body>
                   <Card.Title>{currency.name}</Card.Title>
-                  {/* <Card.Text>
-        Some quick example text to build on the card title and make up the
-        bulk of the card's content.
-      </Card.Text> */}
                   <Button
                     variant="primary"
                     onClick={() => {
@@ -128,10 +147,8 @@ const CreateCashAccount = () => {
           <p>How much cash do you have in your physical wallet?</p>
           <div className="row justify-content-center mt-3">
             <Card style={{ width: "18rem" }}>
-              
               <Card.Body>
-              <div className="row justify-content-center mt-1">
-              </div>
+                <div className="row justify-content-center mt-1"></div>
 
                 <label>Amount</label>
 
@@ -140,9 +157,9 @@ const CreateCashAccount = () => {
                     {" "}
                     <input
                       type="number"
-                      name="cashBalance"
+                      name="currentBalance"
                       onChange={handelChange}
-                      value={dataCashAccount.cashBalance}
+                      value={dataCashAccount.currentBalance}
                       className="form-control mt-1 text-number"
                       placeholder="Enter your cash balance"
                     />
@@ -150,14 +167,7 @@ const CreateCashAccount = () => {
                   <div className="bg-light border">{currency.code}</div>
                 </Stack>
 
-                {/* <Card.Text>
-        Some quick example text to build on the card title and make up the
-        bulk of the card's content.
-      </Card.Text> */}
-                <Button
-                  variant="primary"
-                  onClick={finish}
-                >
+                <Button variant="primary" onClick={finish}>
                   Finish
                 </Button>
               </Card.Body>

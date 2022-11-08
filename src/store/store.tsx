@@ -1,11 +1,12 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 
 
 import listSlice from './listSlice';
 import authSlice from './authSlice';
 import authSignUpSlice from './authSignUpSlice';
 import accountsSlice from './accountsSlice';
-import { useDispatch } from 'react-redux';
+import createAccountSlice from './createAccountSlice';
 
 const store = configureStore({
     reducer: combineReducers({
@@ -13,6 +14,7 @@ const store = configureStore({
         auth: authSlice,
         authSignUp: authSignUpSlice,
         userAccounts: accountsSlice,
+        createAccount: createAccountSlice,
     })
 })
 
