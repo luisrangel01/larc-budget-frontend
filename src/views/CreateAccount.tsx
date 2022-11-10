@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
 import Stack from "react-bootstrap/Stack";
 import Card from "react-bootstrap/Card";
 import Tab from "react-bootstrap/Tab";
@@ -13,10 +12,13 @@ import dataCurrencies from "../assets/currencies.json";
 import { ICurrency } from "../interfaces/currency.interface";
 
 import { createAccountAsync } from "../store/createAccountSlice";
+import Select from "../components/Select";
 import Currencies from "../components/Currencies";
+import Color from "../components/Color";
 
 const CreateCashAccount = () => {
   const [key, setKey] = useState("home");
+  const [color, setColor] = useState("#00D084");
   const [currencies, setCurrencies] = useState<ICurrency[]>([]);
   const [currency, setCurrency] = React.useState<ICurrency>({
     name: "",
@@ -27,7 +29,7 @@ const CreateCashAccount = () => {
     currentBalance: 0,
     type: "CASH",
     name: "CASH",
-    color: "#00D084",
+    color: "BLUE",
     currency: "",
   });
   const { accountId } = useSelector((state: any) => state.createAccount);
@@ -64,6 +66,17 @@ const CreateCashAccount = () => {
     }
   };
 
+  const currenciesHandleChange = (e: any) => {
+    console.log(e.target.value);
+    const currencyFind = currencies.find(
+      (currency) => currency.code === e.target.value
+    );
+    if (currencyFind) {
+      setCurrency(currencyFind);
+    }
+    // setColor(e.target.value);
+  };
+
   const handelChange = (e: any) => {
     setDataCashAccount({ ...dataCashAccount, [e.target.name]: e.target.value });
   };
@@ -75,9 +88,23 @@ const CreateCashAccount = () => {
     dispatch(createAccountAsync(dataCashAccount));
   };
 
+  const handleChangeComplete = (color: any) => {
+    console.log(color.hex);
+    setColor(color.hex);
+    // this.setState({ background: color.hex });
+  };
+
   return (
     <>
       <MenuNavbar />
+
+      <Select
+        defaultValue={currency.code}
+        options={currencies}
+        onChange={currenciesHandleChange}
+        valueField="code"
+        textField="name"
+      />
 
       <Tabs
         id="controlled-tab-example"
@@ -97,6 +124,7 @@ const CreateCashAccount = () => {
             currencies={currencies}
             handleOnSelect={handleSelect}
           />
+          <Color color={color} onChangeComplete={handleChangeComplete} />
           {currency.id !== 0 && (
             <div className="row justify-content-center mt-3">
               <Card style={{ width: "18rem" }}>

@@ -49,7 +49,8 @@ const MenuNavbar = () => {
             <Nav.Link onClick={() => navigateTo("/dashboard")}>
               Dashboard
             </Nav.Link>
-            <Nav.Link onClick={() => navigateTo("/create-cash-account")}>Create Account</Nav.Link>
+            <Nav.Link onClick={() => navigateTo("/create-cash-account")}>Create Cash Account</Nav.Link>
+            <Nav.Link onClick={() => navigateTo("/create-account")}>Create Account</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Profile" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">

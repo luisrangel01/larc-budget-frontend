@@ -9,6 +9,7 @@ import RouteProtector from "../../components/RouteProtector";
 import Home from "../../views/Home";
 import Dashboard from "../../views/Dashboard";
 import CreateCashAccount from "../../views/CreateCashAccount";
+import CreateAccount from "../../views/CreateAccount";
 import NotFound from "../../views/NotFound";
 import SignIn from "../../views/SignIn";
 import SignUp from "../../views/SignUp";
@@ -61,6 +62,14 @@ function App() {
             element={
               <RouteProtector>
                 <CreateCashAccount />
+              </RouteProtector>
+            }
+          />
+          <Route
+            path="/create-account"
+            element={
+              <RouteProtector>
+                <CreateAccount />
               </RouteProtector>
             }
           />

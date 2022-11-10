@@ -18,7 +18,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (status === "succeeded") {
       if (accounts.length === 0) {
-        navigate("/create-account");
+        navigate("/create-cash-account");
       }
     }
   }, [status]);

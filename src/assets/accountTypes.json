@@ -1,0 +1,57 @@
+[
+    {
+        "id": "CASH",
+        "name": "Cash",
+        "iconUrl": ""
+    },
+    {
+        "id": "GENERAL",
+        "name": "General",
+        "iconUrl": ""
+    },
+    {
+        "id": "CURRENT_ACCOUNT",
+        "name": "Current account",
+        "iconUrl": ""
+    },
+    {
+        "id": "CREDIT_CARD",
+        "name": "Credit card",
+        "iconUrl": ""
+    },
+    {
+        "id": "SAVING_ACCOUNT",
+        "name": "Saving account",
+        "iconUrl": ""
+    },
+    {
+        "id": "BONUS",
+        "name": "Bonus",
+        "iconUrl": ""
+    },
+    {
+        "id": "INSURANCE",
+        "name": "Insurance",
+        "iconUrl": ""
+    },
+    {
+        "id": "INVESTMENT",
+        "name": "Investment",
+        "iconUrl": ""
+    },
+    {
+        "id": "LOAN",
+        "name": "Loan",
+        "iconUrl": ""
+    },
+    {
+        "id": "MORTGAGE",
+        "name": "Mortgage",
+        "iconUrl": ""
+    },
+    {
+        "id": "ACCOUNT_WITH_OVERDRAFT",
+        "name": "Account with overdraft",
+        "iconUrl": ""
+    }
+]
