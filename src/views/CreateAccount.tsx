@@ -7,23 +7,31 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Button from "react-bootstrap/Button";
 
-import MenuNavbar from "../components/MenuNavbar";
-import dataCurrencies from "../assets/currencies.json";
-import { ICurrency } from "../interfaces/currency.interface";
-
 import { createAccountAsync } from "../store/createAccountSlice";
-import Select from "../components/Select";
+import baseCurrencies from "../assets/currencies.json";
+import baseAccountTypes from "../assets/accountTypes.json";
+import { ICurrency } from "../interfaces/currency.interface";
+import { IAccountType } from "../interfaces/accountType.interface";
+
+import MenuNavbar from "../components/MenuNavbar";
 import Currencies from "../components/Currencies";
+import AccountTypes from "../components/AccountTypes";
 import Color from "../components/Color";
 
 const CreateCashAccount = () => {
   const [key, setKey] = useState("home");
   const [color, setColor] = useState("#00D084");
   const [currencies, setCurrencies] = useState<ICurrency[]>([]);
+  const [types, setTypes] = useState<IAccountType[]>([]);
   const [currency, setCurrency] = React.useState<ICurrency>({
     name: "",
     code: "",
     id: 0,
+  });
+  const [accountType, setAccountType] = React.useState<IAccountType>({
+    id: "",
+    name: "",
+    order: 0,
   });
   const [dataCashAccount, setDataCashAccount] = useState({
     currentBalance: 0,
@@ -36,45 +44,51 @@ const CreateCashAccount = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const getData = () => {
-    const array: ICurrency[] = dataCurrencies;
+  const getCurrencies = () => {
+    const dataCurrencies: ICurrency[] = baseCurrencies;
 
-    array.sort((a, b) => a.id - b.id);
+    dataCurrencies.sort((a, b) => a.id - b.id);
 
-    setCurrencies((prevNames) => [...array]);
-    return array;
+    setCurrencies((prevNames) => [...dataCurrencies]);
+    return dataCurrencies;
+  };
+
+  const getAccountTypes = () => {
+    const dataAccountTypes: IAccountType[] = baseAccountTypes;
+
+    dataAccountTypes.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    setTypes((prevNames) => [...dataAccountTypes]);
+    return dataAccountTypes;
   };
 
   useEffect(() => {
-    getData();
+    getCurrencies();
+    getAccountTypes();
   }, []);
 
   useEffect(() => {
     setDataCashAccount({ ...dataCashAccount, currency: currency.code });
   }, [currency]);
 
-  useEffect(() => {
-    if (accountId.length !== 0) {
-      navigate("/dashboard");
-    }
-  }, [accountId]);
+  // useEffect(() => {
+  //   if (accountId.length !== 0) {
+  //     navigate("/dashboard");
+  //   }
+  // }, [accountId]);
 
-  const handleSelect = (e: any) => {
+  const currencyHandleSelect = (e: any) => {
     const currencyFind = currencies.find((currency) => currency.code === e);
     if (currencyFind) {
       setCurrency(currencyFind);
     }
   };
 
-  const currenciesHandleChange = (e: any) => {
-    console.log(e.target.value);
-    const currencyFind = currencies.find(
-      (currency) => currency.code === e.target.value
-    );
-    if (currencyFind) {
-      setCurrency(currencyFind);
+  const typeHandleSelect = (e: any) => {
+    const typeFind = types.find((type) => type.id === e);
+    if (typeFind) {
+      setAccountType(typeFind);
     }
-    // setColor(e.target.value);
   };
 
   const handelChange = (e: any) => {
@@ -98,14 +112,6 @@ const CreateCashAccount = () => {
     <>
       <MenuNavbar />
 
-      <Select
-        defaultValue={currency.code}
-        options={currencies}
-        onChange={currenciesHandleChange}
-        valueField="code"
-        textField="name"
-      />
-
       <Tabs
         id="controlled-tab-example"
         activeKey={key}
@@ -122,7 +128,12 @@ const CreateCashAccount = () => {
           <Currencies
             currency={currency}
             currencies={currencies}
-            handleOnSelect={handleSelect}
+            handleOnSelect={currencyHandleSelect}
+          />
+          <AccountTypes
+            type={accountType}
+            types={types}
+            handleOnSelect={typeHandleSelect}
           />
           <Color color={color} onChangeComplete={handleChangeComplete} />
           {currency.id !== 0 && (
