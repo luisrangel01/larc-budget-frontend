@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Stack from "react-bootstrap/Stack";
-import Card from "react-bootstrap/Card";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
-import Button from "react-bootstrap/Button";
 
-import { createAccountAsync } from "../store/createAccountSlice";
+import { createAccountAsync, resetCreateAccount } from "../store/createAccountSlice";
 import baseCurrencies from "../assets/currencies.json";
 import baseAccountTypes from "../assets/accountTypes.json";
 import { ICurrency } from "../interfaces/currency.interface";
@@ -19,7 +14,6 @@ import AccountTypes from "../components/AccountTypes";
 import Color from "../components/Color";
 
 const CreateCashAccount = () => {
-  const [key, setKey] = useState("home");
   const [color, setColor] = useState("#00D084");
   const [currencies, setCurrencies] = useState<ICurrency[]>([]);
   const [types, setTypes] = useState<IAccountType[]>([]);
@@ -33,11 +27,11 @@ const CreateCashAccount = () => {
     name: "",
     order: 0,
   });
-  const [dataCashAccount, setDataCashAccount] = useState({
+  const [dataAccount, setDataAccount] = useState({
     currentBalance: 0,
-    type: "CASH",
-    name: "CASH",
-    color: "BLUE",
+    type: "",
+    name: "",
+    color: color,
     currency: "",
   });
   const { accountId } = useSelector((state: any) => state.createAccount);
@@ -68,14 +62,24 @@ const CreateCashAccount = () => {
   }, []);
 
   useEffect(() => {
-    setDataCashAccount({ ...dataCashAccount, currency: currency.code });
+    setDataAccount({ ...dataAccount, currency: currency.code });
   }, [currency]);
 
-  // useEffect(() => {
-  //   if (accountId.length !== 0) {
-  //     navigate("/dashboard");
-  //   }
-  // }, [accountId]);
+  useEffect(() => {
+    setDataAccount({ ...dataAccount, type: accountType.id });
+  }, [accountType]);
+
+  useEffect(() => {
+    setDataAccount({ ...dataAccount, color: color });
+  }, [color]);
+
+  useEffect(() => {
+    if (accountId.length !== 0) {
+      // @ts-ignore
+      dispatch(resetCreateAccount());
+      navigate("/dashboard");
+    }
+  }, [accountId]);
 
   const currencyHandleSelect = (e: any) => {
     const currencyFind = currencies.find((currency) => currency.code === e);
@@ -92,109 +96,83 @@ const CreateCashAccount = () => {
   };
 
   const handelChange = (e: any) => {
-    setDataCashAccount({ ...dataCashAccount, [e.target.name]: e.target.value });
-  };
-
-  const finish = () => {
-    console.log(dataCashAccount);
-    // @ts-ignore
-    // dispatch(getSignIn(dataSignIn));
-    dispatch(createAccountAsync(dataCashAccount));
+    setDataAccount({ ...dataAccount, [e.target.name]: e.target.value });
   };
 
   const handleChangeComplete = (color: any) => {
-    console.log(color.hex);
     setColor(color.hex);
-    // this.setState({ background: color.hex });
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    // @ts-ignore
+    dispatch(createAccountAsync(dataAccount));
   };
 
   return (
     <>
       <MenuNavbar />
 
-      <Tabs
-        id="controlled-tab-example"
-        activeKey={key}
-        onSelect={(k) => setKey(k || "home")}
-        className="mb-3"
-      >
-        <Tab eventKey="home" title="">
-          <div>Select base currency</div>
-
-          <p>
-            Let's start by selecting your base currency. All transactions in
-            other currencies will be calculated regards this one.
-          </p>
-          <Currencies
-            currency={currency}
-            currencies={currencies}
-            handleOnSelect={currencyHandleSelect}
-          />
-          <AccountTypes
-            type={accountType}
-            types={types}
-            handleOnSelect={typeHandleSelect}
-          />
-          <Color color={color} onChangeComplete={handleChangeComplete} />
-          {currency.id !== 0 && (
-            <div className="row justify-content-center mt-3">
-              <Card style={{ width: "18rem" }}>
-                <div className="row justify-content-center mt-1">
-                  <Card.Img
-                    variant="top"
-                    src={currency.flagUrl}
-                    className="card-img-flag"
-                  />
-                </div>
-                <Card.Body>
-                  <Card.Title>{currency.name}</Card.Title>
-                  <Button
-                    variant="primary"
-                    onClick={() => {
-                      setKey("balance");
-                    }}
-                  >
-                    Next
-                  </Button>
-                </Card.Body>
-              </Card>
+      <div className="Auth-form-container">
+        <form className="Auth-form" onSubmit={handleSubmit}>
+          <div className="Auth-form-content">
+            <h3 className="Auth-form-title">Configure Account</h3>
+            <div className="form-group mt-3">
+              <label>Account Name</label>
+              <input
+                type="text"
+                name="name"
+                onChange={handelChange}
+                value={dataAccount.name}
+                className="form-control mt-1"
+                placeholder="Enter an Account Name"
+              />
             </div>
-          )}
-        </Tab>
-        <Tab eventKey="balance" title="">
-          <div>Set up your cash balance</div>
 
-          <p>How much cash do you have in your physical wallet?</p>
-          <div className="row justify-content-center mt-3">
-            <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <div className="row justify-content-center mt-1"></div>
+            <div className="form-group mt-3">
+              <label>Current Balance</label>
+              <input
+                type="number"
+                name="currentBalance"
+                onChange={handelChange}
+                value={dataAccount.currentBalance}
+                className="form-control mt-1"
+                placeholder="Enter a Current Balance"
+              />
+            </div>
 
-                <label>Amount</label>
+            <div className="form-group mt-3">
+              <label>Currency</label>
+              <Currencies
+                currency={currency}
+                currencies={currencies}
+                handleOnSelect={currencyHandleSelect}
+              />
+            </div>
 
-                <Stack gap={2} className="mb-3">
-                  <div>
-                    {" "}
-                    <input
-                      type="number"
-                      name="currentBalance"
-                      onChange={handelChange}
-                      value={dataCashAccount.currentBalance}
-                      className="form-control mt-1 text-number"
-                      placeholder="Enter your cash balance"
-                    />
-                  </div>
-                  <div className="bg-light border">{currency.code}</div>
-                </Stack>
+            <div className="form-group mt-3">
+              <label>Type</label>
+              <AccountTypes
+                type={accountType}
+                types={types}
+                handleOnSelect={typeHandleSelect}
+              />
+            </div>
 
-                <Button variant="primary" onClick={finish}>
-                  Finish
-                </Button>
-              </Card.Body>
-            </Card>
+            <div className="form-group mt-3">
+              <label>Color</label>
+              <Color color={color} onChangeComplete={handleChangeComplete} />
+            </div>
+
+            <div className="d-grid gap-2 mt-3">
+              <button type="submit" className="btn btn-primary">
+                Save
+              </button>
+            </div>
           </div>
-        </Tab>
-      </Tabs>
+        </form>
+      </div>
     </>
   );
 };

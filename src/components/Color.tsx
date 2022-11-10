@@ -1,4 +1,4 @@
-import Stack from "react-bootstrap/Stack";
+import { useState } from "react";
 import { ColorChangeHandler, TwitterPicker } from "react-color";
 
 type ColorProps = {
@@ -7,14 +7,22 @@ type ColorProps = {
 };
 
 const Color = ({ color, onChangeComplete }: ColorProps) => {
+  const [showPicker, setShowPicker] = useState(false);
+  const showPickerComponent = () => {
+    setShowPicker(!showPicker);
+  };
+
   return (
-    <Stack direction="horizontal" gap={3} className="mb-3">
-      <div>
-        <label>Color:</label>
-      </div>
-      <div className="box-color" style={{ backgroundColor: color }}></div>
-      <TwitterPicker color={color} onChangeComplete={onChangeComplete} />
-    </Stack>
+    <div className="d-flex justify-content-center mt-3">
+      <div
+        className="box-color"
+        style={{ backgroundColor: color }}
+        onClick={showPickerComponent}
+      ></div>
+      {showPicker && (
+        <TwitterPicker color={color} onChangeComplete={onChangeComplete} />
+      )}
+    </div>
   );
 };
 

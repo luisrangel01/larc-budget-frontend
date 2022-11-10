@@ -53,6 +53,8 @@ const CreateCashAccount = () => {
 
   useEffect(() => {
     if (accountId.length !== 0) {
+      // @ts-ignore
+      dispatch(resetCreateAccount());
       navigate("/dashboard");
     }
   }, [accountId]);

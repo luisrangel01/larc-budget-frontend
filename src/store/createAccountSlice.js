@@ -45,7 +45,7 @@ export const createAccountSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    reset: (state, action) => {
+    resetCreateAccount: (state, action) => {
       return {
         status: "idle",
         account: {},
@@ -80,6 +80,6 @@ export const createAccountSlice = createSlice({
   },
 });
 
-export const { reset } = createAccountSlice.actions;
+export const { resetCreateAccount } = createAccountSlice.actions;
 
 export default createAccountSlice.reducer;

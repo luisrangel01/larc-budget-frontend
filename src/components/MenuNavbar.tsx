@@ -6,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-import { reset } from "../store/accountsSlice";
+import { resetAccounts } from "../store/accountsSlice";
 import { signOut } from "../store/authSlice";
 
 const MenuNavbar = () => {
@@ -32,7 +32,7 @@ const MenuNavbar = () => {
     // @ts-ignore
     dispatch(signOut());
     // @ts-ignore
-    dispatch(reset());
+    dispatch(resetAccounts());
   };
 
   return (
