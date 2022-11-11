@@ -29,7 +29,7 @@ const CreateCashAccount = () => {
   const { accountId } = useSelector((state: any) => state.createAccount);
   const { currencies } = useSelector((state: any) => state.currencies);
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setDataCashAccount({ ...dataCashAccount, currency: currency.code });

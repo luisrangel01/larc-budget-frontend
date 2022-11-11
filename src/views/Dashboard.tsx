@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import MenuNavbar from "../components/MenuNavbar";
 import { getAccountsAsync } from "../store/accountsSlice";
 import { getCurrenciesAsync } from "../store/currenciesSlice";
+import { getAccountTypesAsync } from "../store/accountTypesSlice";
 
 const Dashboard = () => {
   const { accounts, status } = useSelector((state: any) => state.userAccounts);
@@ -12,6 +13,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // @ts-ignore
+    dispatch(getAccountTypesAsync());
     // @ts-ignore
     dispatch(getCurrenciesAsync());
     // @ts-ignore

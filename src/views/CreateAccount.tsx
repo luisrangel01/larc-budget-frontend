@@ -6,7 +6,6 @@ import {
   createAccountAsync,
   resetCreateAccount,
 } from "../store/createAccountSlice";
-import baseAccountTypes from "../assets/accountTypes.json";
 import { ICurrency } from "../interfaces/currency.interface";
 import { IAccountType } from "../interfaces/accountType.interface";
 
@@ -17,7 +16,6 @@ import Color from "../components/Color";
 
 const CreateCashAccount = () => {
   const [color, setColor] = useState("#00D084");
-  const [types, setTypes] = useState<IAccountType[]>([]);
   const [currency, setCurrency] = React.useState<ICurrency>({
     name: "",
     code: "",
@@ -37,21 +35,9 @@ const CreateCashAccount = () => {
   });
   const { accountId } = useSelector((state: any) => state.createAccount);
   const { currencies } = useSelector((state: any) => state.currencies);
+  const { types } = useSelector((state: any) => state.accountTypes);
   const dispatch = useDispatch();
-  let navigate = useNavigate();
-
-  const getAccountTypes = () => {
-    const dataAccountTypes: IAccountType[] = baseAccountTypes;
-
-    dataAccountTypes.sort((a, b) => (a.order || 0) - (b.order || 0));
-
-    setTypes((prevNames) => [...dataAccountTypes]);
-    return dataAccountTypes;
-  };
-
-  useEffect(() => {
-    getAccountTypes();
-  }, []);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setDataAccount({ ...dataAccount, currency: currency.code });
@@ -83,7 +69,7 @@ const CreateCashAccount = () => {
   };
 
   const typeHandleSelect = (e: any) => {
-    const typeFind = types.find((type) => type.id === e);
+    const typeFind = types.find((type: IAccountType) => type.id === e);
     if (typeFind) {
       setAccountType(typeFind);
     }
