@@ -7,6 +7,7 @@ import authSlice from './authSlice';
 import authSignUpSlice from './authSignUpSlice';
 import accountsSlice from './accountsSlice';
 import createAccountSlice from './createAccountSlice';
+import currenciesSlice from './currenciesSlice';
 
 const store = configureStore({
     reducer: combineReducers({
@@ -15,6 +16,7 @@ const store = configureStore({
         authSignUp: authSignUpSlice,
         userAccounts: accountsSlice,
         createAccount: createAccountSlice,
+        currencies: currenciesSlice,
     })
 })
 

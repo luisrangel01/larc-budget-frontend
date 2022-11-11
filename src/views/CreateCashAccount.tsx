@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
 import Stack from "react-bootstrap/Stack";
 import Card from "react-bootstrap/Card";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Button from "react-bootstrap/Button";
 
-import MenuNavbar from "../components/MenuNavbar";
-import dataCurrencies from "../assets/currencies.json";
-import { ICurrency } from "../interfaces/currency.interface";
-
 import { createAccountAsync } from "../store/createAccountSlice";
+import { ICurrency } from "../interfaces/currency.interface";
+import MenuNavbar from "../components/MenuNavbar";
 import Currencies from "../components/Currencies";
 
 const CreateCashAccount = () => {
   const [key, setKey] = useState("home");
-  const [currencies, setCurrencies] = useState<ICurrency[]>([]);
   const [currency, setCurrency] = React.useState<ICurrency>({
     name: "",
     code: "",
@@ -31,21 +27,9 @@ const CreateCashAccount = () => {
     currency: "",
   });
   const { accountId } = useSelector((state: any) => state.createAccount);
+  const { currencies } = useSelector((state: any) => state.currencies);
   const dispatch = useDispatch();
   let navigate = useNavigate();
-
-  const getData = () => {
-    const array: ICurrency[] = dataCurrencies;
-
-    array.sort((a, b) => a.id - b.id);
-
-    setCurrencies((prevNames) => [...array]);
-    return array;
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   useEffect(() => {
     setDataCashAccount({ ...dataCashAccount, currency: currency.code });
@@ -60,7 +44,9 @@ const CreateCashAccount = () => {
   }, [accountId]);
 
   const handleSelect = (e: any) => {
-    const currencyFind = currencies.find((currency) => currency.code === e);
+    const currencyFind = currencies.find(
+      (currency: ICurrency) => currency.code === e
+    );
     if (currencyFind) {
       setCurrency(currencyFind);
     }
@@ -71,9 +57,7 @@ const CreateCashAccount = () => {
   };
 
   const finish = () => {
-    console.log(dataCashAccount);
     // @ts-ignore
-    // dispatch(getSignIn(dataSignIn));
     dispatch(createAccountAsync(dataCashAccount));
   };
 

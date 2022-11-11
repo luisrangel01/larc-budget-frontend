@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { createAccountAsync, resetCreateAccount } from "../store/createAccountSlice";
-import baseCurrencies from "../assets/currencies.json";
+import {
+  createAccountAsync,
+  resetCreateAccount,
+} from "../store/createAccountSlice";
 import baseAccountTypes from "../assets/accountTypes.json";
 import { ICurrency } from "../interfaces/currency.interface";
 import { IAccountType } from "../interfaces/accountType.interface";
@@ -15,7 +17,6 @@ import Color from "../components/Color";
 
 const CreateCashAccount = () => {
   const [color, setColor] = useState("#00D084");
-  const [currencies, setCurrencies] = useState<ICurrency[]>([]);
   const [types, setTypes] = useState<IAccountType[]>([]);
   const [currency, setCurrency] = React.useState<ICurrency>({
     name: "",
@@ -35,17 +36,9 @@ const CreateCashAccount = () => {
     currency: "",
   });
   const { accountId } = useSelector((state: any) => state.createAccount);
+  const { currencies } = useSelector((state: any) => state.currencies);
   const dispatch = useDispatch();
   let navigate = useNavigate();
-
-  const getCurrencies = () => {
-    const dataCurrencies: ICurrency[] = baseCurrencies;
-
-    dataCurrencies.sort((a, b) => a.id - b.id);
-
-    setCurrencies((prevNames) => [...dataCurrencies]);
-    return dataCurrencies;
-  };
 
   const getAccountTypes = () => {
     const dataAccountTypes: IAccountType[] = baseAccountTypes;
@@ -57,7 +50,6 @@ const CreateCashAccount = () => {
   };
 
   useEffect(() => {
-    getCurrencies();
     getAccountTypes();
   }, []);
 
@@ -82,7 +74,9 @@ const CreateCashAccount = () => {
   }, [accountId]);
 
   const currencyHandleSelect = (e: any) => {
-    const currencyFind = currencies.find((currency) => currency.code === e);
+    const currencyFind = currencies.find(
+      (currency: ICurrency) => currency.code === e
+    );
     if (currencyFind) {
       setCurrency(currencyFind);
     }
