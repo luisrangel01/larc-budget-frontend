@@ -1,7 +1,7 @@
 import { ChangeEventHandler, MouseEventHandler } from "react";
 import { Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { getCurrency, getType } from "../../helpers/utils";
+import { getAmount, getCurrency, getType } from "../../helpers/utils";
 
 import { IAccount } from "../../interfaces/account.interface";
 import Icon from "../Icon";
@@ -49,10 +49,7 @@ const Accounts = ({
           />
           <Card.Text>{account.name}</Card.Text>
           <Card.Title>
-            {Intl.NumberFormat("es-GT", {
-              style: "currency",
-              currency: account.currency,
-            }).format(account.currentBalance)}
+            {getAmount(account.currency, account.currentBalance)}
           </Card.Title>
           <div className="d-flex justify-content-around">
             <div>{account.currency}</div>

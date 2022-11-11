@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // import { getSignIn } from "../../store/authSlice";
+import "./App.css";
+
 import MenuNavbar from "../MenuNavbar";
 import RouteProtector from "../../components/RouteProtector";
 import Home from "../../views/Home";
@@ -13,8 +15,9 @@ import CreateAccount from "../../views/CreateAccount";
 import NotFound from "../../views/NotFound";
 import SignIn from "../../views/SignIn";
 import SignUp from "../../views/SignUp";
+import AccountDetail from "../../views/AccountDetail";
+import AccountEdit from "../../views/AccountEdit";
 
-import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -70,6 +73,22 @@ function App() {
             element={
               <RouteProtector>
                 <CreateAccount />
+              </RouteProtector>
+            }
+          />
+          <Route
+            path="/account-detail"
+            element={
+              <RouteProtector>
+                <AccountDetail />
+              </RouteProtector>
+            }
+          />
+          <Route
+            path="/account-edit"
+            element={
+              <RouteProtector>
+                <AccountEdit />
               </RouteProtector>
             }
           />
