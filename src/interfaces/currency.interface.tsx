@@ -1,7 +1,7 @@
 export interface ICurrency {
+  id: number;
   code: string;
   decimals?: number | null;
   name: string;
-  id: number;
   flagUrl?: string;
 }

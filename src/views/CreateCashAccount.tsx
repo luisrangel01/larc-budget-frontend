@@ -7,7 +7,10 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Button from "react-bootstrap/Button";
 
-import { createAccountAsync } from "../store/createAccountSlice";
+import {
+  createAccountAsync,
+  resetCreateAccount,
+} from "../store/createAccountSlice";
 import { ICurrency } from "../interfaces/currency.interface";
 import MenuNavbar from "../components/MenuNavbar";
 import Currencies from "../components/Currencies";

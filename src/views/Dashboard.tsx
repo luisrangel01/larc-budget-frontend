@@ -6,9 +6,21 @@ import MenuNavbar from "../components/MenuNavbar";
 import { getAccountsAsync } from "../store/accountsSlice";
 import { getCurrenciesAsync } from "../store/currenciesSlice";
 import { getAccountTypesAsync } from "../store/accountTypesSlice";
+import Accounts from "../components/Accounts";
+import { IAccount } from "../interfaces/account.interface";
+import React from "react";
 
 const Dashboard = () => {
   const { accounts, status } = useSelector((state: any) => state.userAccounts);
+  const [account, setAccount] = React.useState<IAccount>({
+    id: "",
+    name: "",
+    type: "",
+    currency: "",
+    currentBalance: 0,
+    color: "",
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,6 +45,16 @@ const Dashboard = () => {
     <>
       <MenuNavbar />
       <div>Dashboard</div>
+      <Accounts
+        accounts={accounts}
+        account={account}
+        siteSelectedCallback={(
+          event: React.MouseEvent<HTMLElement, MouseEvent>,
+          account: IAccount
+        ) => {
+          console.log(account);
+        }}
+      />
     </>
   );
 };

@@ -13,35 +13,36 @@ import DiscFullIcon from "@material-ui/icons/DiscFull";
 
 type IconProps = {
   icon: string;
+  style?: any;
 };
 
-const Icon = ({ icon }: IconProps) => {
+const Icon = ({ icon, style }: IconProps) => {
   const project = () => {
     switch (icon) {
       case "cash":
-        return <MonetizationOnIcon />;
+        return <MonetizationOnIcon style={style} />;
       case "general":
-        return <AccountBalanceWalletIcon />;
+        return <AccountBalanceWalletIcon style={style} />;
       case "currentAccount":
-        return <AccountBalanceIcon />;
+        return <AccountBalanceIcon style={style} />;
       case "creditCard":
-        return <CreditCardIcon />;
+        return <CreditCardIcon style={style} />;
       case "savingAccount":
-        return <MoneyIcon />;
+        return <MoneyIcon style={style} />;
       case "bonus":
-        return <WorkSharpIcon />;
+        return <WorkSharpIcon style={style} />;
       case "insurance":
-        return <VerifiedUserIcon />;
+        return <VerifiedUserIcon style={style} />;
       case "investment":
-        return <ShareIcon />;
+        return <ShareIcon style={style} />;
       case "loan":
-        return <AttachMoneyIcon />;
+        return <AttachMoneyIcon style={style} />;
       case "mortgage":
-        return <LocalAtmIcon />;
+        return <LocalAtmIcon style={style} />;
       case "accountWithOverdraft":
-        return <LocalCafeIcon />;
+        return <LocalCafeIcon style={style} />;
       default:
-        return <DiscFullIcon />;
+        return <DiscFullIcon style={style} />;
     }
   };
 
