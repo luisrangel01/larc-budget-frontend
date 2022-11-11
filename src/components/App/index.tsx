@@ -17,7 +17,7 @@ import SignIn from "../../views/SignIn";
 import SignUp from "../../views/SignUp";
 import AccountDetail from "../../views/AccountDetail";
 import AccountEdit from "../../views/AccountEdit";
-
+import AccountTransaction from "../../views/AccountTransaction";
 
 function App() {
   const dispatch = useDispatch();
@@ -89,6 +89,14 @@ function App() {
             element={
               <RouteProtector>
                 <AccountEdit />
+              </RouteProtector>
+            }
+          />
+          <Route
+            path="/account-transaction"
+            element={
+              <RouteProtector>
+                <AccountTransaction />
               </RouteProtector>
             }
           />

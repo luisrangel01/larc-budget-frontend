@@ -30,6 +30,10 @@ const AccountDetail = () => {
     navigate("/account-edit", { state: { account: account } });
   };
 
+  const addTransaction = () => {
+    navigate("/account-transaction", { state: { account: account } });
+  };
+
   return (
     <>
       <MenuNavbar />
@@ -68,7 +72,11 @@ const AccountDetail = () => {
                   />
                 </div>
 
-                <Button variant="primary" className="mt-3">
+                <Button
+                  variant="primary"
+                  className="mt-3"
+                  onClick={addTransaction}
+                >
                   <AddCircleIcon /> Record
                 </Button>
               </Card.Body>
