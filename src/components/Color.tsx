@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ColorChangeHandler, TwitterPicker } from "react-color";
+import { ColorChangeHandler, ColorResult, TwitterPicker } from "react-color";
 
 type ColorProps = {
   color: string;
@@ -12,6 +12,14 @@ const Color = ({ color, onChangeComplete }: ColorProps) => {
     setShowPicker(!showPicker);
   };
 
+  const onPickerClick = (
+    color: ColorResult,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    onChangeComplete(color, event);
+    setShowPicker(false);
+  };
+
   return (
     <div className="d-flex justify-content-center mt-3">
       <div
@@ -20,7 +28,7 @@ const Color = ({ color, onChangeComplete }: ColorProps) => {
         onClick={showPickerComponent}
       ></div>
       {showPicker && (
-        <TwitterPicker color={color} onChangeComplete={onChangeComplete} />
+        <TwitterPicker color={color} onChangeComplete={onPickerClick} />
       )}
     </div>
   );

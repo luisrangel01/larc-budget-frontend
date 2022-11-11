@@ -18,6 +18,12 @@ const Currencies = ({
   return (
     <Dropdown onSelect={handleOnSelect}>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
+        {currency.name && (
+          <img
+            src={currency.flagUrl}
+            className="img-fluid shadow-4 ml-3 img-flag"
+          />
+        )}{" "}
         {currency.name || "Select a Currency"}
       </Dropdown.Toggle>
 

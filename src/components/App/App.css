@@ -86,8 +86,8 @@ label {
 }
 
 .text-number {
-  text-align: right;
-  width: 150px;
+  text-align: center;
+  width: 100%;
 }
 
 .box-color{

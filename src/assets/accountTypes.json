@@ -3,66 +3,66 @@
         "id": "CASH",
         "name": "Cash",
         "order": 1,
-        "iconUrl": ""
+        "icon": "cash"
     },
     {
         "id": "GENERAL",
         "name": "General",
         "order": 2,
-        "iconUrl": ""
+        "icon": "general"
     },
     {
         "id": "CURRENT_ACCOUNT",
         "name": "Current account",
         "order": 3,
-        "iconUrl": ""
+        "icon": "currentAccount"
     },
     {
         "id": "CREDIT_CARD",
         "name": "Credit card",
         "order": 4,
-        "iconUrl": ""
+        "icon": "creditCard"
     },
     {
         "id": "SAVING_ACCOUNT",
         "name": "Saving account",
         "order": 5,
-        "iconUrl": ""
+        "icon": "savingAccount"
     },
     {
         "id": "BONUS",
         "name": "Bonus",
         "order": 6,
-        "iconUrl": ""
+        "icon": "bonus"
     },
     {
         "id": "INSURANCE",
         "name": "Insurance",
         "order": 7,
-        "iconUrl": ""
+        "icon": "insurance"
     },
     {
         "id": "INVESTMENT",
         "name": "Investment",
         "order": 8,
-        "iconUrl": ""
+        "icon": "investment"
     },
     {
         "id": "LOAN",
         "name": "Loan",
         "order": 9,
-        "iconUrl": ""
+        "icon": "loan"
     },
     {
         "id": "MORTGAGE",
         "name": "Mortgage",
         "order": 10,
-        "iconUrl": ""
+        "icon": "mortgage"
     },
     {
         "id": "ACCOUNT_WITH_OVERDRAFT",
         "name": "Account with overdraft",
         "order": 11,
-        "iconUrl": ""
+        "icon": "accountWithOverdraft"
     }
 ]

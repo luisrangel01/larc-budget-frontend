@@ -137,7 +137,7 @@ const CreateCashAccount = () => {
                 name="currentBalance"
                 onChange={handelChange}
                 value={dataAccount.currentBalance}
-                className="form-control mt-1"
+                className="form-control mt-1 text-number"
                 placeholder="Enter a Current Balance"
               />
             </div>
