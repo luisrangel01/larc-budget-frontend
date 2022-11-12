@@ -10,9 +10,14 @@ import { getAccountsAsync } from "../store/accountsSlice";
 import { getCurrenciesAsync } from "../store/currenciesSlice";
 import { getAccountTypesAsync } from "../store/accountTypesSlice";
 
+import { signOut } from "../store/authSlice";
+import { resetAccounts } from "../store/accountsSlice";
+
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
-  const { accounts, status } = useSelector((state: any) => state.userAccounts);
+  const { accounts, status, statusCode } = useSelector(
+    (state: any) => state.userAccounts
+  );
   const [account, setAccount] = React.useState<IAccount>({
     id: "",
     name: "",
@@ -42,6 +47,20 @@ const Dashboard = () => {
       }
     }
   }, [status]);
+
+  useEffect(() => {
+    console.log(`xxx statusCode:`, statusCode);
+    if (statusCode === 401) {
+      signOutNow();
+    }
+  }, [statusCode]);
+
+  const signOutNow = () => {
+    // @ts-ignore
+    dispatch(signOut());
+    // @ts-ignore
+    dispatch(resetAccounts());
+  };
 
   const onClickCard = (
     event: React.MouseEvent<HTMLElement, MouseEvent>,

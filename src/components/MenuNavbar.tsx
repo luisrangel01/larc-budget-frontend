@@ -6,8 +6,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-import { resetAccounts } from "../store/accountsSlice";
 import { signOut } from "../store/authSlice";
+import { resetAccounts } from "../store/accountsSlice";
 
 const MenuNavbar = () => {
   const { signIn, user } = useSelector((state: any) => state.auth);

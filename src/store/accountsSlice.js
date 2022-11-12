@@ -13,8 +13,15 @@ export const getAccountsAsync = createAsyncThunk(
 
     const response = await fetch("http://localhost:3002/accounts", init).then(
       async (data) => {
+        const status = data.status;
+        const statusText = data.statusText;
         const result = await data.json();
-        const toReturn = { accounts: result, status: data.status };
+
+        const toReturn = {
+          accounts: status === 200 ? result : [],
+          status,
+          statusText,
+        };
 
         return toReturn;
       }
@@ -26,7 +33,9 @@ export const getAccountsAsync = createAsyncThunk(
 
 const initialState = {
   accounts: [],
+  statusCode: 0,
   status: "idle",
+  statusText: "idle",
   error: null,
 };
 
@@ -37,7 +46,9 @@ export const accountsSlice = createSlice({
   reducers: {
     resetAccounts: (state, action) => {
       return {
+        statusCode: 0,
         status: "idle",
+        statusText: "idle",
         accounts: [],
         error: null,
       };
@@ -52,6 +63,8 @@ export const accountsSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getAccountsAsync.fulfilled, (state, action) => {
       // Add user to the state array
+      state.statusCode = action.payload?.status;
+      state.statusText = action.payload?.statusText;
       if (action.payload?.status === 200) {
         state.status = "succeeded";
         state.accounts = [...action.payload.accounts];
