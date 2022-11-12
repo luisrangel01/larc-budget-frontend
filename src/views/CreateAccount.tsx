@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {
   createAccountAsync,
   resetCreateAccount,
-} from "../store/createAccountSlice";
+} from "../store/accounts/createAccountSlice";
 import { ICurrency } from "../interfaces/currency.interface";
 import { IAccountType } from "../interfaces/accountType.interface";
 

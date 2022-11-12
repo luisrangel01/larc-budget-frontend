@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 import {
   createAccountAsync,
   resetCreateAccount,
-} from "../store/createAccountSlice";
+} from "../store/accounts/createAccountSlice";
 import { ICurrency } from "../interfaces/currency.interface";
 import MenuNavbar from "../components/MenuNavbar";
 import Currencies from "../components/Currencies";

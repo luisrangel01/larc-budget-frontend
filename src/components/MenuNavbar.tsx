@@ -6,19 +6,37 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-import { signOut } from "../store/authSlice";
-import { resetAccounts } from "../store/accountsSlice";
+import { signOut, getTokenCheckAsync } from "../store/auth/authSlice";
+import { resetAccounts } from "../store/accounts/accountsSlice";
+import { tokenIsExpired } from "../helpers/utils";
 
 const MenuNavbar = () => {
-  const { signIn, user } = useSelector((state: any) => state.auth);
+  const { signIn, user, statusTokenCode } = useSelector(
+    (state: any) => state.auth
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (tokenIsExpired()) {
+      signOutNow();
+    } else {
+      // @ts-ignore
+      dispatch(getTokenCheckAsync());
+    }
+  }, []);
 
   useEffect(() => {
     if (!signIn) {
       navigate("/sign-in");
     }
   }, [signIn]);
+
+  useEffect(() => {
+    if (statusTokenCode === 401) {
+      signOutNow();
+    }
+  }, [statusTokenCode]);
 
   const home = () => {
     navigate("/home");
@@ -49,8 +67,12 @@ const MenuNavbar = () => {
             <Nav.Link onClick={() => navigateTo("/dashboard")}>
               Dashboard
             </Nav.Link>
-            <Nav.Link onClick={() => navigateTo("/create-cash-account")}>Create Cash Account</Nav.Link>
-            <Nav.Link onClick={() => navigateTo("/create-account")}>Create Account</Nav.Link>
+            <Nav.Link onClick={() => navigateTo("/create-cash-account")}>
+              Create Cash Account
+            </Nav.Link>
+            <Nav.Link onClick={() => navigateTo("/create-account")}>
+              Create Account
+            </Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Profile" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">

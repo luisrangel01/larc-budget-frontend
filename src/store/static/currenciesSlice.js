@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import baseCurrencies from "../assets/currencies.json";
+import baseCurrencies from "../../assets/currencies.json";
 
 export const getCurrenciesAsync = createAsyncThunk(
   "currencies/getCurrenciesAsync",

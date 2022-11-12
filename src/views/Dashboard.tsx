@@ -4,20 +4,17 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 
 import { IAccount } from "../interfaces/account.interface";
+import { getAccountsAsync } from "../store/accounts/accountsSlice";
+import { getCurrenciesAsync } from "../store/static/currenciesSlice";
+import { getAccountTypesAsync } from "../store/static/accountTypesSlice";
+import { signOut } from "../store/auth/authSlice";
+import { resetAccounts } from "../store/accounts/accountsSlice";
 import MenuNavbar from "../components/MenuNavbar";
 import Accounts from "../components/Accounts";
-import { getAccountsAsync } from "../store/accountsSlice";
-import { getCurrenciesAsync } from "../store/currenciesSlice";
-import { getAccountTypesAsync } from "../store/accountTypesSlice";
-
-import { signOut } from "../store/authSlice";
-import { resetAccounts } from "../store/accountsSlice";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
-  const { accounts, status, statusCode } = useSelector(
-    (state: any) => state.userAccounts
-  );
+  const { accounts, status } = useSelector((state: any) => state.userAccounts);
   const [account, setAccount] = React.useState<IAccount>({
     id: "",
     name: "",
@@ -47,13 +44,6 @@ const Dashboard = () => {
       }
     }
   }, [status]);
-
-  useEffect(() => {
-    console.log(`xxx statusCode:`, statusCode);
-    if (statusCode === 401) {
-      signOutNow();
-    }
-  }, [statusCode]);
 
   const signOutNow = () => {
     // @ts-ignore

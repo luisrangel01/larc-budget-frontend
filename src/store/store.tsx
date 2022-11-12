@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 
 
 import listSlice from './listSlice';
-import authSlice from './authSlice';
-import authSignUpSlice from './authSignUpSlice';
-import accountsSlice from './accountsSlice';
-import createAccountSlice from './createAccountSlice';
-import currenciesSlice from './currenciesSlice';
-import accountTypesSlice from './accountTypesSlice';
+import authSlice from './auth/authSlice';
+import authSignUpSlice from './auth/authSignUpSlice';
+import accountsSlice from './accounts/accountsSlice';
+import createAccountSlice from './accounts/createAccountSlice';
+import currenciesSlice from './static/currenciesSlice';
+import accountTypesSlice from './static/accountTypesSlice';
 
 const store = configureStore({
     reducer: combineReducers({

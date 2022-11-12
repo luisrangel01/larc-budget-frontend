@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
-import { getSignUpAsync, resetSignUp } from "../store/authSignUpSlice";
+import { getSignUpAsync, resetSignUp } from "../store/auth/authSignUpSlice";
 
 const SignUp = (props: any) => {
   const [key, setKey] = useState("home");

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import baseAccountTypes from "../assets/accountTypes.json";
+import baseAccountTypes from "../../assets/accountTypes.json";
 
 export const getAccountTypesAsync = createAsyncThunk(
   "accountTypes/getAccountTypesAsync",

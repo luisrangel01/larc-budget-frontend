@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // import { getSignIn, signOut, getSignInAsync } from "./../store/authSlice";
-import { getSignInAsync } from "../store/authSlice";
+import { getSignInAsync } from "../store/auth/authSlice";
 
 const SignIn = () => {
   const [dataSignIn, setDataSignIn] = useState({

@@ -22,14 +22,37 @@ export const getSignInAsync = createAsyncThunk(
   }
 );
 
+export const getTokenCheckAsync = createAsyncThunk(
+  "auth/getTokenCheckAsync",
+  async () => {
+    const response = await fetch("http://localhost:3002/auth/test", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer  " + localStorage.getItem("access_token"),
+      },
+    }).then(async (data) => {
+      const { status } = data;
+      const result = await data.json();
+      return { ...result, status: data.status, statusCode: status };
+    });
+
+    return response;
+  }
+);
+
 const token = localStorage.getItem("access_token");
 
 const initialState = {
   signIn: token ? true : false,
   user: { username: "", userId: "" },
   token: token ? token : null,
+  tokenValid: false,
   status: "idle",
+  statusToken: "idle",
+  statusTokenCode: 0,
   error: null,
+  errorToken: null,
 };
 
 export const authSlice = createSlice({
@@ -51,8 +74,12 @@ export const authSlice = createSlice({
         signIn: false,
         user: { username: "", userId: "" },
         token: null,
+        tokenValid: false,
         status: "idle",
+        statusToken: "idle",
+        statusTokenCode: 0,
         error: null,
+        errorToken: null,
       };
       // return initialState;
     },
@@ -71,6 +98,7 @@ export const authSlice = createSlice({
         const decoded = jwt_decode(action.payload.accessToken);
         state.user = decoded;
         state.token = action.payload.accessToken;
+        state.tokenValid = true;
         state.signIn = action.payload.accessToken ? true : false;
         localStorage.setItem("access_token", action.payload.accessToken);
       } else {
@@ -82,6 +110,28 @@ export const authSlice = createSlice({
     builder.addCase(getSignInAsync.rejected, (state, action) => {
       console.error(action.error);
       state.status = "failed";
+      state.error = action.error.message;
+    });
+
+    builder.addCase(getTokenCheckAsync.pending, (state, action) => {
+      state.statusToken = "loading";
+    });
+
+    builder.addCase(getTokenCheckAsync.fulfilled, (state, action) => {
+      state.statusTokenCode = action.payload?.statusCode;
+      if (action.payload?.status === 201) {
+        state.statusToken = "succeeded";
+        state.tokenValid = true;
+      } else {
+        state.tokenValid = false;
+        state.statusToken = "error";
+      }
+    });
+
+    builder.addCase(getTokenCheckAsync.rejected, (state, action) => {
+      console.error(action.error);
+      state.tokenValid = false;
+      state.statusToken = "failed";
       state.error = action.error.message;
     });
   },
