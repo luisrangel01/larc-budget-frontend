@@ -35,7 +35,7 @@ const SignUp = (props: any) => {
     }
   }, [signUp]);
 
-  const handelChange = (e: any) => {
+  const handleChange = (e: any) => {
     setDataSignUp({ ...dataSignUp, [e.target.name]: e.target.value });
   };
 
@@ -59,7 +59,7 @@ const SignUp = (props: any) => {
             <input
               type="text"
               name="name"
-              onChange={handelChange}
+              onChange={handleChange}
               value={dataSignUp.name}
               className="form-control mt-1"
               placeholder="e.g Jane Doe"
@@ -70,7 +70,7 @@ const SignUp = (props: any) => {
             <input
               type="email"
               name="email"
-              onChange={handelChange}
+              onChange={handleChange}
               value={dataSignUp.email}
               className="form-control mt-1"
               placeholder="Email Address"
@@ -81,7 +81,7 @@ const SignUp = (props: any) => {
             <input
               type="password"
               name="password"
-              onChange={handelChange}
+              onChange={handleChange}
               value={dataSignUp.password}
               className="form-control mt-1"
               placeholder="Password"

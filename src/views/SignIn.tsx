@@ -28,7 +28,7 @@ const SignIn = () => {
     }
   }, [signIn]);
 
-  const handelChange = (e: any) => {
+  const handleChange = (e: any) => {
     setDataSignIn({ ...dataSignIn, [e.target.name]: e.target.value });
   };
 
@@ -52,7 +52,7 @@ const SignIn = () => {
             <input
               type="email"
               name="email"
-              onChange={handelChange}
+              onChange={handleChange}
               value={dataSignIn.email}
               className="form-control mt-1"
               placeholder="Enter email"
@@ -63,7 +63,7 @@ const SignIn = () => {
             <input
               type="password"
               name="password"
-              onChange={handelChange}
+              onChange={handleChange}
               value={dataSignIn.password}
               className="form-control mt-1"
               placeholder="Enter password"

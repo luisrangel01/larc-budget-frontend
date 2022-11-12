@@ -75,11 +75,11 @@ const CreateCashAccount = () => {
     }
   };
 
-  const handelChange = (e: any) => {
+  const handleChange = (e: any) => {
     setDataAccount({ ...dataAccount, [e.target.name]: e.target.value });
   };
 
-  const handleChangeComplete = (color: any) => {
+  const colorHandleChangeComplete = (color: any) => {
     setColor(color.hex);
   };
 
@@ -103,7 +103,7 @@ const CreateCashAccount = () => {
               <input
                 type="text"
                 name="name"
-                onChange={handelChange}
+                onChange={handleChange}
                 value={dataAccount.name}
                 className="form-control mt-1"
                 placeholder="Enter an Account Name"
@@ -115,7 +115,7 @@ const CreateCashAccount = () => {
               <input
                 type="number"
                 name="currentBalance"
-                onChange={handelChange}
+                onChange={handleChange}
                 value={dataAccount.currentBalance}
                 className="form-control mt-1 text-number"
                 placeholder="Enter a Current Balance"
@@ -142,7 +142,7 @@ const CreateCashAccount = () => {
 
             <div className="form-group mt-3">
               <label>Color</label>
-              <Color color={color} onChangeComplete={handleChangeComplete} />
+              <Color color={color} onChangeComplete={colorHandleChangeComplete} />
             </div>
 
             <div className="d-grid gap-2 mt-3">

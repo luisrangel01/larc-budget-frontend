@@ -55,7 +55,7 @@ const CreateCashAccount = () => {
     }
   };
 
-  const handelChange = (e: any) => {
+  const handleChange = (e: any) => {
     setDataCashAccount({ ...dataCashAccount, [e.target.name]: e.target.value });
   };
 
@@ -128,7 +128,7 @@ const CreateCashAccount = () => {
                     <input
                       type="number"
                       name="currentBalance"
-                      onChange={handelChange}
+                      onChange={handleChange}
                       value={dataCashAccount.currentBalance}
                       className="form-control mt-1 text-number"
                       placeholder="Enter your cash balance"
