@@ -1,7 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 
+import {
+  updateAccountAsync,
+  resetUpdateAccount,
+} from "../store/accounts/updateAccountSlice";
 import { IAccount } from "../interfaces/account.interface";
 import { ICurrency } from "../interfaces/currency.interface";
 import { IAccountType } from "../interfaces/accountType.interface";
@@ -9,13 +14,13 @@ import MenuNavbar from "../components/MenuNavbar";
 import Currencies from "../components/Currencies";
 import AccountTypes from "../components/AccountTypes";
 import Color from "../components/Color";
-import React from "react";
-import { useSelector } from "react-redux";
 import { getCurrency, getType } from "../helpers/utils";
 
 const AccountEdit = () => {
   const { currencies } = useSelector((state: any) => state.currencies);
   const { types } = useSelector((state: any) => state.accountTypes);
+  const { affected } = useSelector((state: any) => state.updateAccount);
+  const dispatch = useDispatch();
 
   const location = useLocation();
   const account: IAccount = location.state.account;
@@ -31,13 +36,16 @@ const AccountEdit = () => {
     name: "",
     order: 0,
   });
-  const [dataAccount, setDataAccount] = useState({
+  const [dataAccount, setDataAccount] = useState<IAccount>({
     currentBalance: account.currentBalance,
     type: account.type,
     name: account.name,
     color: color,
     currency: account.currency,
+    id: account.id,
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (currencies.length > 0) {
@@ -52,6 +60,24 @@ const AccountEdit = () => {
   }, [currencies]);
 
   useEffect(() => {
+    if (currency) {
+      setDataAccount({ ...dataAccount, currency: currency.code });
+    }
+  }, [currency]);
+
+  useEffect(() => {
+    if (color) {
+      setDataAccount({ ...dataAccount, color: color });
+    }
+  }, [color]);
+
+  useEffect(() => {
+    if (accountType) {
+      setDataAccount({ ...dataAccount, type: accountType.id });
+    }
+  }, [accountType]);
+
+  useEffect(() => {
     if (types.length > 0) {
       const auxType: IAccountType | undefined = getType(account.type, types);
       if (auxType) {
@@ -60,7 +86,14 @@ const AccountEdit = () => {
     }
   }, [types]);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (affected !== 0) {
+      // @ts-ignore
+      dispatch(resetUpdateAccount());
+      console.log(`xxx dataAccount:`, dataAccount);
+      navigate("/account-detail", { state: { account: dataAccount } });
+    }
+  }, [affected]);
 
   const cancel = () => {
     navigate("/account-detail", { state: { account: account } });

@@ -1,30 +1,31 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 
-
-import listSlice from './listSlice';
-import authSlice from './auth/authSlice';
-import authSignUpSlice from './auth/authSignUpSlice';
-import accountsSlice from './accounts/accountsSlice';
-import createAccountSlice from './accounts/createAccountSlice';
-import currenciesSlice from './static/currenciesSlice';
-import accountTypesSlice from './static/accountTypesSlice';
+import listSlice from "./listSlice";
+import authSlice from "./auth/authSlice";
+import authSignUpSlice from "./auth/authSignUpSlice";
+import accountsSlice from "./accounts/accountsSlice";
+import createAccountSlice from "./accounts/createAccountSlice";
+import updateAccountSlice from "./accounts/updateAccountSlice";
+import currenciesSlice from "./static/currenciesSlice";
+import accountTypesSlice from "./static/accountTypesSlice";
 
 const store = configureStore({
-    reducer: combineReducers({
-        list: listSlice,
-        auth: authSlice,
-        authSignUp: authSignUpSlice,
-        userAccounts: accountsSlice,
-        createAccount: createAccountSlice,
-        currencies: currenciesSlice,
-        accountTypes: accountTypesSlice,
-    })
-})
+  reducer: combineReducers({
+    list: listSlice,
+    auth: authSlice,
+    authSignUp: authSignUpSlice,
+    userAccounts: accountsSlice,
+    createAccount: createAccountSlice,
+    updateAccount: updateAccountSlice,
+    currencies: currenciesSlice,
+    accountTypes: accountTypesSlice,
+  }),
+});
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch: () => AppDispatch = useDispatch 
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
 
-export default store
+export default store;
