@@ -67,6 +67,13 @@ export const accountsSlice = createSlice({
       state.statusText = action.payload?.statusText;
       if (action.payload?.status === 200) {
         state.status = "succeeded";
+        action.payload.accounts.sort((a, b) =>
+          a.name.toLowerCase() > b.name.toLowerCase()
+            ? 1
+            : b.name.toLowerCase() > a.name.toLowerCase()
+            ? -1
+            : 0
+        );
         state.accounts = [...action.payload.accounts];
       } else {
         state.status = "error";

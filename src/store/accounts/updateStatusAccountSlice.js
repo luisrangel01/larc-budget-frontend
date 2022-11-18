@@ -1,14 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const updateAccountAsync = createAsyncThunk(
-  "updateAccount/updateAccountAsync",
+export const updateStatusAccountAsync = createAsyncThunk(
+  "updateStatusAccount/updateStatusAccountAsync",
   async (data) => {
     const body = {
-      name: data.name,
-      type: data.type,
-      currency: data.currency,
-      currentBalance: data.currentBalance,
-      color: data.color,
+      status: "INACTIVE",
     };
 
     const init = {
@@ -21,14 +17,14 @@ export const updateAccountAsync = createAsyncThunk(
     };
 
     const response = await fetch(
-      `http://localhost:3002/accounts/${data.id}`,
+      `http://localhost:3002/accounts/${data.id}/status`,
       init
     ).then(async (data) => {
       const result = await data.json();
       const toReturn = {
         account: result,
         status: data.status,
-        updateAffected: result.affected || 0,
+        updateStatusAffected: result.affected || 0,
       };
 
       return toReturn;
@@ -41,44 +37,45 @@ export const updateAccountAsync = createAsyncThunk(
 const initialState = {
   account: {},
   accountId: "",
-  updateAffected: 0,
+  updateStatusAffected: 0,
   status: "idle",
   error: null,
 };
 
-export const updateAccountSlice = createSlice({
-  name: "updateAccount",
+export const updateStatusAccountSlice = createSlice({
+  name: "updateStatusAccount",
   initialState: initialState,
 
   reducers: {
-    resetUpdateAccount: (state, action) => {
+    resetUpdateStatusAccount: (state, action) => {
       return {
         status: "idle",
         account: {},
         accountId: "",
-        updateAffected: 0,
+        updateStatusAffected: 0,
         error: null,
       };
     },
   },
 
   extraReducers: (builder) => {
-    builder.addCase(updateAccountAsync.pending, (state, action) => {
+    builder.addCase(updateStatusAccountAsync.pending, (state, action) => {
       state.status = "loading";
     });
 
-    builder.addCase(updateAccountAsync.fulfilled, (state, action) => {
-      state.updateAffected = action.payload.updateAffected || 0;
-      if (action.payload?.status === 201) {
+    builder.addCase(updateStatusAccountAsync.fulfilled, (state, action) => {
+      if (action.payload?.status === 200) {
+        state.updateStatusAffected = 1;
         state.status = "succeeded";
         state.accountId = action.payload.account.id;
         state.account = { ...action.payload.account };
       } else {
+        state.updateStatusAffected = 0;
         state.status = "error";
       }
     });
 
-    builder.addCase(updateAccountAsync.rejected, (state, action) => {
+    builder.addCase(updateStatusAccountAsync.rejected, (state, action) => {
       console.error(action.error);
       state.status = "failed";
       state.error = action.error.message;
@@ -86,6 +83,6 @@ export const updateAccountSlice = createSlice({
   },
 });
 
-export const { resetUpdateAccount } = updateAccountSlice.actions;
+export const { resetUpdateStatusAccount } = updateStatusAccountSlice.actions;
 
-export default updateAccountSlice.reducer;
+export default updateStatusAccountSlice.reducer;

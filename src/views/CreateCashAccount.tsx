@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 
 import {
   createAccountAsync,
@@ -16,6 +17,7 @@ import MenuNavbar from "../components/MenuNavbar";
 import Currencies from "../components/Currencies";
 
 const CreateCashAccount = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [key, setKey] = useState("home");
   const [currency, setCurrency] = React.useState<ICurrency>({
     name: "",
@@ -29,10 +31,16 @@ const CreateCashAccount = () => {
     color: "#00D084",
     currency: "",
   });
-  const { accountId } = useSelector((state: any) => state.createAccount);
+  const { accountId, status } = useSelector(
+    (state: any) => state.createAccount
+  );
   const { currencies } = useSelector((state: any) => state.currencies);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(status === "loading");
+  }, [status]);
 
   useEffect(() => {
     setDataCashAccount({ ...dataCashAccount, currency: currency.code });
@@ -113,6 +121,11 @@ const CreateCashAccount = () => {
         </Tab>
         <Tab eventKey="balance" title="">
           <div>Set up your cash balance</div>
+          {loading && (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          )}
 
           <p>How much cash do you have in your physical wallet?</p>
           <div className="row justify-content-center mt-3">
@@ -137,7 +150,7 @@ const CreateCashAccount = () => {
                   <div className="bg-light border">{currency.code}</div>
                 </Stack>
 
-                <Button variant="primary" onClick={finish}>
+                <Button variant="primary" onClick={finish} disabled={loading}>
                   Finish
                 </Button>
               </Card.Body>

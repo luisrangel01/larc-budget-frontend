@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 
 import {
   createAccountAsync,
@@ -15,6 +16,7 @@ import AccountTypes from "../components/AccountTypes";
 import Color from "../components/Color";
 
 const CreateCashAccount = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [color, setColor] = useState("#00D084");
   const [currency, setCurrency] = React.useState<ICurrency>({
     name: "",
@@ -33,11 +35,17 @@ const CreateCashAccount = () => {
     color: color,
     currency: "",
   });
-  const { accountId } = useSelector((state: any) => state.createAccount);
+  const { accountId, status } = useSelector(
+    (state: any) => state.createAccount
+  );
   const { currencies } = useSelector((state: any) => state.currencies);
   const { types } = useSelector((state: any) => state.accountTypes);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(status === "loading");
+  }, [status]);
 
   useEffect(() => {
     setDataAccount({ ...dataAccount, currency: currency.code });
@@ -98,6 +106,11 @@ const CreateCashAccount = () => {
         <form className="Auth-form" onSubmit={handleSubmit}>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Configure Account</h3>
+            {loading && (
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            )}
             <div className="form-group mt-3">
               <label>Account Name</label>
               <input
@@ -142,11 +155,18 @@ const CreateCashAccount = () => {
 
             <div className="form-group mt-3">
               <label>Color</label>
-              <Color color={color} onChangeComplete={colorHandleChangeComplete} />
+              <Color
+                color={color}
+                onChangeComplete={colorHandleChangeComplete}
+              />
             </div>
 
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={loading}
+              >
                 Save
               </button>
             </div>

@@ -1,19 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const updateAccountAsync = createAsyncThunk(
-  "updateAccount/updateAccountAsync",
+export const deleteAccountAsync = createAsyncThunk(
+  "deleteAccount/deleteAccountAsync",
   async (data) => {
-    const body = {
-      name: data.name,
-      type: data.type,
-      currency: data.currency,
-      currentBalance: data.currentBalance,
-      color: data.color,
-    };
-
     const init = {
-      method: "PATCH",
-      body: JSON.stringify(body),
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -28,7 +19,7 @@ export const updateAccountAsync = createAsyncThunk(
       const toReturn = {
         account: result,
         status: data.status,
-        updateAffected: result.affected || 0,
+        deleteAffected: result.affected || 0,
       };
 
       return toReturn;
@@ -41,35 +32,35 @@ export const updateAccountAsync = createAsyncThunk(
 const initialState = {
   account: {},
   accountId: "",
-  updateAffected: 0,
+  deleteAffected: 0,
   status: "idle",
   error: null,
 };
 
-export const updateAccountSlice = createSlice({
-  name: "updateAccount",
+export const deleteAccountSlice = createSlice({
+  name: "deleteAccount",
   initialState: initialState,
 
   reducers: {
-    resetUpdateAccount: (state, action) => {
+    resetDeleteAccount: (state, action) => {
       return {
         status: "idle",
         account: {},
         accountId: "",
-        updateAffected: 0,
+        deleteAffected: 0,
         error: null,
       };
     },
   },
 
   extraReducers: (builder) => {
-    builder.addCase(updateAccountAsync.pending, (state, action) => {
+    builder.addCase(deleteAccountAsync.pending, (state, action) => {
       state.status = "loading";
     });
 
-    builder.addCase(updateAccountAsync.fulfilled, (state, action) => {
-      state.updateAffected = action.payload.updateAffected || 0;
-      if (action.payload?.status === 201) {
+    builder.addCase(deleteAccountAsync.fulfilled, (state, action) => {
+      state.deleteAffected = action.payload.deleteAffected || 0;
+      if (action.payload?.status === 200) {
         state.status = "succeeded";
         state.accountId = action.payload.account.id;
         state.account = { ...action.payload.account };
@@ -78,7 +69,7 @@ export const updateAccountSlice = createSlice({
       }
     });
 
-    builder.addCase(updateAccountAsync.rejected, (state, action) => {
+    builder.addCase(deleteAccountAsync.rejected, (state, action) => {
       console.error(action.error);
       state.status = "failed";
       state.error = action.error.message;
@@ -86,6 +77,6 @@ export const updateAccountSlice = createSlice({
   },
 });
 
-export const { resetUpdateAccount } = updateAccountSlice.actions;
+export const { resetDeleteAccount } = deleteAccountSlice.actions;
 
-export default updateAccountSlice.reducer;
+export default deleteAccountSlice.reducer;

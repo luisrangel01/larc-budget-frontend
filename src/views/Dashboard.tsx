@@ -13,7 +13,7 @@ import MenuNavbar from "../components/MenuNavbar";
 import Accounts from "../components/Accounts";
 
 const Dashboard = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const { accounts, status } = useSelector((state: any) => state.userAccounts);
   const [account, setAccount] = React.useState<IAccount>({
     id: "",
@@ -37,8 +37,8 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(!(status === "succeeded"));
     if (status === "succeeded") {
-      setLoading(false);
       if (accounts.length === 0) {
         navigate("/create-cash-account");
       }
