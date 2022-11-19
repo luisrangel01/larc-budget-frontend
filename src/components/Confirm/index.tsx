@@ -1,4 +1,3 @@
-import React, { MouseEventHandler, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -35,7 +34,7 @@ const Confirm = ({
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{body}</Modal.Body>
+        {body && <Modal.Body>{body}</Modal.Body>}
         <Modal.Footer>
           <Button variant="secondary" onClick={close}>
             Close
