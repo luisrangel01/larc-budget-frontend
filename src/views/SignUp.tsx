@@ -26,11 +26,9 @@ const SignUp = (props: any) => {
   };
 
   useEffect(() => {
-    console.log(`signUp`, signUp);
     if (signUp) {
       // @ts-ignore
       dispatch(resetSignUp());
-      console.log("redirect...");
       navigate("/sign-in");
     }
   }, [signUp]);

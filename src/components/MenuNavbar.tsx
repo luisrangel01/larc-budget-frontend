@@ -89,7 +89,7 @@ const MenuNavbar = () => {
                 Separated link
               </NavDropdown.Item>
               <NavDropdown.Item onClick={home}>Home</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4" onClick={signOutNow}>
+              <NavDropdown.Item onClick={signOutNow}>
                 Sign Out
               </NavDropdown.Item>
             </NavDropdown>

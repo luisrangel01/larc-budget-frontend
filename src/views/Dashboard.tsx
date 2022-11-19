@@ -7,8 +7,6 @@ import { IAccount } from "../interfaces/account.interface";
 import { getAccountsAsync } from "../store/accounts/accountsSlice";
 import { getCurrenciesAsync } from "../store/static/currenciesSlice";
 import { getAccountTypesAsync } from "../store/static/accountTypesSlice";
-import { signOut } from "../store/auth/authSlice";
-import { resetAccounts } from "../store/accounts/accountsSlice";
 import MenuNavbar from "../components/MenuNavbar";
 import Accounts from "../components/Accounts";
 
@@ -44,13 +42,6 @@ const Dashboard = () => {
       }
     }
   }, [status]);
-
-  const signOutNow = () => {
-    // @ts-ignore
-    dispatch(signOut());
-    // @ts-ignore
-    dispatch(resetAccounts());
-  };
 
   const onClickCard = (
     event: React.MouseEvent<HTMLElement, MouseEvent>,
