@@ -111,6 +111,7 @@ const CreateCashAccount = () => {
                 <span className="visually-hidden">Loading...</span>
               </Spinner>
             )}
+
             <div className="form-group mt-3">
               <label>Account Name</label>
               <input
@@ -170,6 +171,7 @@ const CreateCashAccount = () => {
                 Save
               </button>
             </div>
+
           </div>
         </form>
       </div>

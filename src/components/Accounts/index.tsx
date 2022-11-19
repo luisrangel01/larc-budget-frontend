@@ -1,9 +1,9 @@
-import { ChangeEventHandler, MouseEventHandler } from "react";
 import { Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { getAmount, getCurrency, getType } from "../../helpers/utils";
+import { getAmount, getType } from "../../helpers/utils";
 
 import { IAccount } from "../../interfaces/account.interface";
+import Currency from "../Currency";
 import Icon from "../Icon";
 import "./Accounts.css";
 
@@ -18,7 +18,6 @@ const Accounts = ({
   accounts,
   siteSelectedCallback,
 }: AccountsProps) => {
-  const { currencies } = useSelector((state: any) => state.currencies);
   const { types } = useSelector((state: any) => state.accountTypes);
 
   const onClickCard = (
@@ -28,7 +27,6 @@ const Accounts = ({
     siteSelectedCallback(event, account);
   };
   const renderCard = (account: IAccount, index: number) => {
-    const currency = getCurrency(account.currency, currencies);
     const type = getType(account.type, types);
 
     return (
@@ -51,13 +49,7 @@ const Accounts = ({
           <Card.Title>
             {getAmount(account.currency, account.currentBalance)}
           </Card.Title>
-          <div className="d-flex justify-content-around">
-            <div>{account.currency}</div>
-            <img
-              src={currency ? currency.flagUrl || "" : ""}
-              className="img-fluid shadow-4 img-flag"
-            />
-          </div>
+          <Currency currency={account.currency} />
           {/* <Card.Text>{account.type}</Card.Text> */}
         </Card.Body>
       </Card>
