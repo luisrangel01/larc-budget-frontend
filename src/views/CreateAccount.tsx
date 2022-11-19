@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 
+import { ICurrency } from "../interfaces/currency.interface";
+import { IAccountType } from "../interfaces/accountType.interface";
 import {
   createAccountAsync,
   resetCreateAccount,
 } from "../store/accounts/createAccountSlice";
-import { ICurrency } from "../interfaces/currency.interface";
-import { IAccountType } from "../interfaces/accountType.interface";
-
 import MenuNavbar from "../components/MenuNavbar";
 import Currencies from "../components/Currencies";
 import AccountTypes from "../components/AccountTypes";

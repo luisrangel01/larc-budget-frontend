@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import Spinner from "react-bootstrap/Spinner";
 
 import { IAccount } from "../interfaces/account.interface";
-import MenuNavbar from "../components/MenuNavbar";
 import { IAccountTransaction } from "../interfaces/accountTransaction.interface";
+import {
+  createAccountTransactionAsync,
+  resetCreateAccountTransaction,
+} from "../store/accountTransactions/createAccountTransactionSlice";
+import MenuNavbar from "../components/MenuNavbar";
 import Currency from "../components/Currency";
 
 const AccountTransaction = () => {
@@ -19,11 +24,15 @@ const AccountTransaction = () => {
   const [dataTransaction, setDataTransaction] = useState<IAccountTransaction>({
     accountId: account.id,
     currency: account.currency,
-    type: "",
+    type: radioValue,
     amount: 0,
     note: "",
   });
+  const { transactionId, status, transaction } = useSelector(
+    (state: any) => state.createAccountTransaction
+  );
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const radios = [
@@ -31,6 +40,31 @@ const AccountTransaction = () => {
     { name: "Income", value: "CREDIT", variant: "outline-success" },
     { name: "Transfer", value: "TRANSFER", variant: "outline-dark" },
   ];
+
+  useEffect(() => {
+    setLoading(status === "loading");
+  }, [status]);
+
+  useEffect(() => {
+    if (radioValue) {
+      setDataTransaction({
+        ...dataTransaction,
+        type: radioValue,
+      });
+    }
+  }, [radioValue]);
+
+  useEffect(() => {
+    if (transactionId.length !== 0) {
+      // @ts-ignore
+      dispatch(resetCreateAccountTransaction());
+      const accountUpdated = {
+        ...account,
+        currentBalance: transaction.currentBalance,
+      };
+      navigate("/account-detail", { state: { account: accountUpdated } });
+    }
+  }, [transactionId]);
 
   const handleChange = (e: any) => {
     const value =
@@ -48,9 +82,8 @@ const AccountTransaction = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    console.log(dataTransaction);
     // @ts-ignore
-    // dispatch(createAccountAsync(dataTransaction));
+    dispatch(createAccountTransactionAsync(dataTransaction));
   };
 
   return (
