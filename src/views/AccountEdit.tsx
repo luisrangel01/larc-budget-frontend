@@ -20,6 +20,7 @@ import Currencies from "../components/Currencies";
 import AccountTypes from "../components/AccountTypes";
 import Color from "../components/Color";
 import { getCurrency, getType } from "../helpers/utils";
+import Confirm from "../components/Confirm";
 
 const AccountEdit = () => {
   const { currencies } = useSelector((state: any) => state.currencies);
@@ -36,6 +37,7 @@ const AccountEdit = () => {
   const account: IAccount = location.state.account;
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [showConfirm, setShowConfirm] = useState<boolean>(false);
   const [color, setColor] = useState(account.color || "#00D084");
   const [currency, setCurrency] = React.useState<ICurrency>({
     name: "",
@@ -128,8 +130,7 @@ const AccountEdit = () => {
   };
 
   const archive = () => {
-    // @ts-ignore
-    dispatch(updateStatusAccountAsync(dataAccount));
+    setShowConfirm(true);
   };
 
   const handleChange = (e: any) => {
@@ -163,9 +164,24 @@ const AccountEdit = () => {
     dispatch(updateAccountAsync(dataAccount));
   };
 
+  const onConfirmClose = (result: any) => {
+    setShowConfirm(!showConfirm);
+
+    if (result.ok) {
+      // @ts-ignore
+      dispatch(updateStatusAccountAsync(dataAccount));
+    }
+  };
+
   return (
     <>
       <MenuNavbar />
+      <Confirm
+        title="Confirm Archive Account"
+        acceptText="Archive Account"
+        handleClose={onConfirmClose}
+        showModal={showConfirm}
+      />
 
       <div className="Auth-form-container">
         <form className="Auth-form" onSubmit={handleSubmit}>
