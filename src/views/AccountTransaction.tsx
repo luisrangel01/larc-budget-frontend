@@ -7,11 +7,15 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import Spinner from "react-bootstrap/Spinner";
 
 import { IAccount } from "../interfaces/account.interface";
-import { IAccountTransaction } from "../interfaces/accountTransaction.interface";
+import { IAccountTransactionProcess } from "../interfaces/accountTransaction.interface";
 import {
   createAccountTransactionAsync,
   resetCreateAccountTransaction,
 } from "../store/accountTransactions/createAccountTransactionSlice";
+import {
+  createTransferAsync,
+  resetCreateTransfer,
+} from "../store/accountTransactions/createTransferSlice";
 import MenuNavbar from "../components/MenuNavbar";
 import Currency from "../components/Currency";
 import { getRestOfAccounts } from "../helpers/utils";
@@ -23,13 +27,15 @@ const AccountTransaction = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [radioValue, setRadioValue] = useState<string>("DEBIT");
-  const [dataTransaction, setDataTransaction] = useState<IAccountTransaction>({
-    accountId: account.id,
-    currency: account.currency,
-    type: radioValue,
-    amount: 0,
-    note: "",
-  });
+  const [dataTransaction, setDataTransaction] =
+    useState<IAccountTransactionProcess>({
+      accountId: account.id,
+      currency: account.currency,
+      type: radioValue,
+      amount: 0,
+      note: "",
+      destinationAccountId: "",
+    });
   const [restOfAccount, setRestOfAccount] = useState<IAccount>({
     id: "",
     name: "",
@@ -42,6 +48,11 @@ const AccountTransaction = () => {
   const { transactionId, status, transaction } = useSelector(
     (state: any) => state.createAccountTransaction
   );
+  const {
+    originAccountTransactionId,
+    status: transferStatus,
+    originAccountTransaction,
+  } = useSelector((state: any) => state.createTransfer);
   const { accounts } = useSelector((state: any) => state.userAccounts);
 
   const restOfAccounts = getRestOfAccounts(account, accounts);
@@ -56,7 +67,7 @@ const AccountTransaction = () => {
   ];
 
   useEffect(() => {
-    setLoading(status === "loading");
+    setLoading(status === "loading" || transferStatus === "loading");
   }, [status]);
 
   useEffect(() => {
@@ -80,6 +91,27 @@ const AccountTransaction = () => {
     }
   }, [transactionId]);
 
+  useEffect(() => {
+    if (originAccountTransactionId.length !== 0) {
+      // @ts-ignore
+      dispatch(resetCreateTransfer());
+      const accountUpdated = {
+        ...account,
+        currentBalance: originAccountTransaction.currentBalance,
+      };
+      navigate("/account-detail", { state: { account: accountUpdated } });
+    }
+  }, [originAccountTransactionId]);
+
+  useEffect(() => {
+    if (restOfAccount) {
+      setDataTransaction({
+        ...dataTransaction,
+        destinationAccountId: restOfAccount.id,
+      });
+    }
+  }, [restOfAccount]);
+
   const handleChange = (e: any) => {
     const value =
       e.target.type === "number" ? Number(e.target.value) : e.target.value;
@@ -96,8 +128,13 @@ const AccountTransaction = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    // @ts-ignore
-    dispatch(createAccountTransactionAsync(dataTransaction));
+    if (radioValue === "TRANSFER") {
+      // @ts-ignore
+      dispatch(createTransferAsync(dataTransaction));
+    } else {
+      // @ts-ignore
+      dispatch(createAccountTransactionAsync(dataTransaction));
+    }
   };
 
   const restOfAccountsHandleSelect = (e: any) => {
@@ -164,14 +201,16 @@ const AccountTransaction = () => {
 
             <Currency currency={account.currency} />
 
-            <div className="form-group mt-3">
-              <label>Destination Account</label>
-              <AccountsDropdown
-                account={restOfAccount}
-                accounts={restOfAccounts}
-                handleOnSelect={restOfAccountsHandleSelect}
-              />
-            </div>
+            {radioValue === "TRANSFER" && (
+              <div className="form-group mt-3">
+                <label>Destination Account</label>
+                <AccountsDropdown
+                  account={restOfAccount}
+                  accounts={restOfAccounts}
+                  handleOnSelect={restOfAccountsHandleSelect}
+                />
+              </div>
+            )}
 
             <div className="form-group mt-3">
               <label>Note</label>

@@ -6,3 +6,12 @@ export interface IAccountTransaction {
   amount: number;
   note: string;
 }
+
+export interface IAccountTransactionProcess {
+  accountId: string;
+  type?: string;
+  destinationAccountId?: string;
+  currency: string;
+  amount: number;
+  note: string;
+}

@@ -4,7 +4,7 @@ export const createTransferAsync = createAsyncThunk(
   "createTransfer/createTransferAsync",
   async (data) => {
     const body = {
-      originAccountId: data.originAccountId,
+      originAccountId: data.accountId,
       destinationAccountId: data.destinationAccountId,
       currency: data.currency,
       amount: data.amount,
