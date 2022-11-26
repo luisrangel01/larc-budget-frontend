@@ -1,5 +1,6 @@
 import jwt_decode from "jwt-decode";
 
+import { IAccount } from "../interfaces/account.interface";
 import { IAccountType } from "../interfaces/accountType.interface";
 import { ICurrency } from "../interfaces/currency.interface";
 
@@ -29,4 +30,8 @@ export const tokenIsExpired = () => {
   }
 
   return isExpired;
+};
+
+export const getRestOfAccounts = (account: IAccount, accounts: IAccount[]) => {
+  return accounts.filter((element) => element.id !== account.id);
 };

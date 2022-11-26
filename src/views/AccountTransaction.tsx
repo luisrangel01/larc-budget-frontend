@@ -14,6 +14,8 @@ import {
 } from "../store/accountTransactions/createAccountTransactionSlice";
 import MenuNavbar from "../components/MenuNavbar";
 import Currency from "../components/Currency";
+import { getRestOfAccounts } from "../helpers/utils";
+import AccountsDropdown from "../components/AccountsDropdown";
 
 const AccountTransaction = () => {
   const location = useLocation();
@@ -28,9 +30,21 @@ const AccountTransaction = () => {
     amount: 0,
     note: "",
   });
+  const [restOfAccount, setRestOfAccount] = useState<IAccount>({
+    id: "",
+    name: "",
+    currentBalance: 0,
+    type: "",
+    color: "",
+    currency: "",
+  });
+
   const { transactionId, status, transaction } = useSelector(
     (state: any) => state.createAccountTransaction
   );
+  const { accounts } = useSelector((state: any) => state.userAccounts);
+
+  const restOfAccounts = getRestOfAccounts(account, accounts);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -84,6 +98,15 @@ const AccountTransaction = () => {
 
     // @ts-ignore
     dispatch(createAccountTransactionAsync(dataTransaction));
+  };
+
+  const restOfAccountsHandleSelect = (e: any) => {
+    const accountFind = restOfAccounts.find(
+      (element: IAccount) => element.id === e
+    );
+    if (accountFind) {
+      setRestOfAccount(accountFind);
+    }
   };
 
   return (
@@ -140,6 +163,15 @@ const AccountTransaction = () => {
             </div>
 
             <Currency currency={account.currency} />
+
+            <div className="form-group mt-3">
+              <label>Destination Account</label>
+              <AccountsDropdown
+                account={restOfAccount}
+                accounts={restOfAccounts}
+                handleOnSelect={restOfAccountsHandleSelect}
+              />
+            </div>
 
             <div className="form-group mt-3">
               <label>Note</label>
