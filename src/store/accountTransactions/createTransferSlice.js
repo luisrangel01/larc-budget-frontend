@@ -1,0 +1,104 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const createTransferAsync = createAsyncThunk(
+  "createTransfer/createTransferAsync",
+  async (data) => {
+    const body = {
+      originAccountId: data.originAccountId,
+      destinationAccountId: data.destinationAccountId,
+      currency: data.currency,
+      amount: data.amount,
+      note: data.note,
+    };
+
+    const init = {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    };
+
+    const response = await fetch(
+      "http://localhost:3002/account-transactions/transfer",
+      init
+    ).then(async (data) => {
+      const result = await data.json();
+      const toReturn = {
+        originAccountTransaction:
+          data.status === 201 ? result.originAccountTransaction : {},
+        destinationAccountTransaction:
+          data.status === 201 ? result.destinationAccountTransaction : {},
+        status: data.status,
+      };
+
+      return toReturn;
+    });
+
+    return response;
+  }
+);
+
+const initialState = {
+  originAccountTransaction: {},
+  destinationAccountTransaction: {},
+  originAccountTransactionId: "",
+  destinationAccountTransactionId: "",
+  status: "idle",
+  error: null,
+};
+
+export const createTransferSlice = createSlice({
+  name: "createTransfer",
+  initialState: initialState,
+
+  reducers: {
+    resetCreateTransfer: (state, action) => {
+      return {
+        status: "idle",
+        originAccountTransaction: {},
+        destinationAccountTransaction: {},
+        originAccountTransactionId: "",
+        destinationAccountTransactionId: "",
+        error: null,
+      };
+    },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(createTransferAsync.pending, (state, action) => {
+      state.status = "loading";
+    });
+
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(createTransferAsync.fulfilled, (state, action) => {
+      // Add user to the state array
+      if (action.payload?.status === 201) {
+        state.status = "succeeded";
+        state.originAccountTransactionId =
+          action.payload.originAccountTransaction.id;
+        state.destinationAccountTransactionId =
+          action.payload.destinationAccountTransaction.id;
+        state.originAccountTransaction = {
+          ...action.payload.originAccountTransaction,
+        };
+        state.destinationAccountTransaction = {
+          ...action.payload.destinationAccountTransaction,
+        };
+      } else {
+        state.status = "error";
+      }
+    });
+
+    builder.addCase(createTransferAsync.rejected, (state, action) => {
+      console.error(action.error);
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+  },
+});
+
+export const { resetCreateTransfer } = createTransferSlice.actions;
+
+export default createTransferSlice.reducer;
