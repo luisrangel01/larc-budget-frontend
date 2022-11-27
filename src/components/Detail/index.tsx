@@ -1,12 +1,18 @@
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 import { IAccountTransaction } from "../../interfaces/accountTransaction.interface";
 
 type DetailProps = {
   transactions: IAccountTransaction[];
+  handleDeleteTransaccion: any;
 };
 
-const Detail = ({ transactions }: DetailProps) => {
+const Detail = ({ transactions, handleDeleteTransaccion }: DetailProps) => {
+  const deleteRow = (transaction: any) => {
+    handleDeleteTransaccion(transaction);
+  };
+
   return (
     <div className="table-responsive" style={{ height: "300px" }}>
       <Table striped bordered hover className="table">
@@ -32,6 +38,14 @@ const Detail = ({ transactions }: DetailProps) => {
                   {transaction.type === "CREDIT" ? null : transaction.amount}
                 </td>
                 <td>{transaction.currentBalance}</td>
+                <td>
+                  <Button
+                    variant="danger"
+                    onClick={() => deleteRow(transaction)}
+                  >
+                    Delete
+                  </Button>
+                </td>
               </tr>
             );
           })}

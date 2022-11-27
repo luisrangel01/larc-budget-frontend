@@ -1,14 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { useDispatch, useSelector } from "react-redux";
+import Spinner from "react-bootstrap/Spinner";
 
 import {
   getTransactionsAsync,
   resetTransactions,
 } from "../store/accountTransactions/transactionsSlice";
+import {
+  updateAccountTransactionAsync,
+  resetUpdateAccountTransaction,
+} from "../store/accountTransactions/updateAccountTransactionSlice";
 import { IAccount } from "../interfaces/account.interface";
 import { getAmount, getCurrency, getType } from "../helpers/utils";
 import MenuNavbar from "../components/MenuNavbar";
@@ -21,8 +26,16 @@ const AccountDetail = () => {
   const { currencies } = useSelector((state: any) => state.currencies);
   const { types } = useSelector((state: any) => state.accountTypes);
   const { transactions } = useSelector((state: any) => state.transactions);
+  const { updateResult, status, revertAccountTransaction } = useSelector(
+    (state: any) => state.updateAccountTransaction
+  );
 
   const account: IAccount = location.state.account;
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [currentBalance, setCurrentBalance] = useState<number>(
+    account.currentBalance || 0
+  );
 
   const currency = getCurrency(account.currency, currencies);
   const type = getType(account.type, types);
@@ -31,9 +44,33 @@ const AccountDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    getTransactions();
+  }, []);
+
+  useEffect(() => {
+    setLoading(status === "loading");
+  }, [status]);
+
+  const deleteTransaction = (transaction: any) => {
+    // @ts-ignore
+    dispatch(updateAccountTransactionAsync({ transactionId: transaction.id }));
+  };
+
+  useEffect(() => {
+    if (updateResult) {
+      if (updateResult.affected > 0) {
+        getTransactions();
+        setCurrentBalance(revertAccountTransaction.currentBalance);
+        // @ts-ignore
+        dispatch(resetUpdateAccountTransaction());
+      }
+    }
+  }, [updateResult]);
+
+  const getTransactions = () => {
     // @ts-ignore
     dispatch(getTransactionsAsync({ accountId: account.id }));
-  }, []);
+  };
 
   const back = () => {
     navigate("/dashboard");
@@ -55,6 +92,11 @@ const AccountDetail = () => {
         <div className="Auth-form">
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Account Detail</h3>
+            {loading && (
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            )}
             <div className="form-group mt-3">
               <div className="d-flex justify-content-between mb-3">
                 <Button variant="outline-secondary" onClick={back}>
@@ -74,7 +116,7 @@ const AccountDetail = () => {
                 />
                 <Card.Text>{account.name}</Card.Text>
                 <Card.Title>
-                  {getAmount(account.currency, account.currentBalance)}
+                  {getAmount(account.currency, currentBalance)}
                 </Card.Title>
 
                 <div className="d-flex justify-content-around">
@@ -96,7 +138,10 @@ const AccountDetail = () => {
             </Card>
 
             <div className="form-group mt-3">
-              <Detail transactions={transactions} />
+              <Detail
+                transactions={transactions}
+                handleDeleteTransaccion={deleteTransaction}
+              />
             </div>
           </div>
         </div>
