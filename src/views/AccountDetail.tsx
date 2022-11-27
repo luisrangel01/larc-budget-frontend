@@ -1,26 +1,39 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
+import {
+  getTransactionsAsync,
+  resetTransactions,
+} from "../store/accountTransactions/transactionsSlice";
 import { IAccount } from "../interfaces/account.interface";
 import { getAmount, getCurrency, getType } from "../helpers/utils";
 import MenuNavbar from "../components/MenuNavbar";
 import Icon from "../components/Icon";
+import Detail from "../components/Detail";
 
 const AccountDetail = () => {
   const location = useLocation();
 
   const { currencies } = useSelector((state: any) => state.currencies);
   const { types } = useSelector((state: any) => state.accountTypes);
+  const { transactions } = useSelector((state: any) => state.transactions);
 
   const account: IAccount = location.state.account;
 
   const currency = getCurrency(account.currency, currencies);
   const type = getType(account.type, types);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // @ts-ignore
+    dispatch(getTransactionsAsync({ accountId: account.id }));
+  }, []);
 
   const back = () => {
     navigate("/dashboard");
@@ -53,7 +66,7 @@ const AccountDetail = () => {
               </div>
             </div>
 
-            <Card style={{ width: "18rem" }}>
+            <Card>
               <Card.Body>
                 <Icon
                   style={{ backgroundColor: account.color }}
@@ -81,6 +94,10 @@ const AccountDetail = () => {
                 </Button>
               </Card.Body>
             </Card>
+
+            <div className="form-group mt-3">
+              <Detail transactions={transactions} />
+            </div>
           </div>
         </div>
       </div>

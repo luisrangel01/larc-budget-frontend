@@ -11,6 +11,7 @@ import deleteAccountSlice from "./accounts/deleteAccountSlice";
 import updateStatusAccountSlice from "./accounts/updateStatusAccountSlice";
 import createAccountTransactionSlice from "./accountTransactions/createAccountTransactionSlice";
 import createTransferSlice from "./accountTransactions/createTransferSlice";
+import transactionsSlice from "./accountTransactions/transactionsSlice";
 import currenciesSlice from "./static/currenciesSlice";
 import accountTypesSlice from "./static/accountTypesSlice";
 
@@ -26,6 +27,7 @@ const store = configureStore({
     updateStatusAccount: updateStatusAccountSlice,
     createAccountTransaction: createAccountTransactionSlice,
     createTransfer: createTransferSlice,
+    transactions: transactionsSlice,
     currencies: currenciesSlice,
     accountTypes: accountTypesSlice,
   }),

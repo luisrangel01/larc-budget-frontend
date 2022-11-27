@@ -96,7 +96,7 @@ const CreateCashAccount = () => {
           />
           {currency.id !== 0 && (
             <div className="row justify-content-center mt-3">
-              <Card style={{ width: "18rem" }}>
+              <Card>
                 <div className="row justify-content-center mt-1">
                   <Card.Img
                     variant="top"
@@ -129,7 +129,7 @@ const CreateCashAccount = () => {
 
           <p>How much cash do you have in your physical wallet?</p>
           <div className="row justify-content-center mt-3">
-            <Card style={{ width: "18rem" }}>
+            <Card>
               <Card.Body>
                 <div className="row justify-content-center mt-1"></div>
 

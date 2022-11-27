@@ -5,6 +5,7 @@ export interface IAccountTransaction {
   currency: string;
   amount: number;
   note: string;
+  currentBalance?: number;
 }
 
 export interface IAccountTransactionProcess {

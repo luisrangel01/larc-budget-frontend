@@ -31,9 +31,10 @@ const AccountEdit = () => {
   const { updateStatusAffected, status } = useSelector(
     (state: any) => state.updateStatusAccount
   );
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const location = useLocation();
+
   const account: IAccount = location.state.account;
 
   const [loading, setLoading] = useState<boolean>(false);
