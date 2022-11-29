@@ -49,6 +49,8 @@ const AccountEdit = () => {
     id: "",
     name: "",
     order: 0,
+    validateAmountAvailableDebit: false,
+    validateAmountAvailableTransfer: false,
   });
   const [dataAccount, setDataAccount] = useState<IAccount>({
     currentBalance: account.currentBalance,
