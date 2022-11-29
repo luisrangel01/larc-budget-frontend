@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import Spinner from "react-bootstrap/Spinner";
+import Toast from "react-bootstrap/Toast";
 
 import { IAccount } from "../interfaces/account.interface";
 import { IAccountTransactionProcess } from "../interfaces/accountTransaction.interface";
@@ -18,14 +19,16 @@ import {
 } from "../store/accountTransactions/createTransferSlice";
 import MenuNavbar from "../components/MenuNavbar";
 import Currency from "../components/Currency";
-import { getRestOfAccounts } from "../helpers/utils";
+import { getAmount, getRestOfAccounts, getType } from "../helpers/utils";
 import AccountsDropdown from "../components/AccountsDropdown";
 
 const AccountTransaction = () => {
   const location = useLocation();
   const account: IAccount = location.state.account;
 
+  const { types } = useSelector((state: any) => state.accountTypes);
   const [loading, setLoading] = useState<boolean>(false);
+  const [showA, setShowA] = useState(false);
   const [radioValue, setRadioValue] = useState<string>("DEBIT");
   const [dataTransaction, setDataTransaction] =
     useState<IAccountTransactionProcess>({
@@ -65,10 +68,11 @@ const AccountTransaction = () => {
     { name: "Income", value: "CREDIT", variant: "outline-success" },
     { name: "Transfer", value: "TRANSFER", variant: "outline-dark" },
   ];
+  const type = getType(account.type, types);
 
   useEffect(() => {
     setLoading(status === "loading" || transferStatus === "loading");
-  }, [status]);
+  }, [status, transferStatus]);
 
   useEffect(() => {
     if (radioValue) {
@@ -112,6 +116,8 @@ const AccountTransaction = () => {
     }
   }, [restOfAccount]);
 
+  const toggleShowA = () => setShowA(!showA);
+
   const handleChange = (e: any) => {
     const value =
       e.target.type === "number" ? Number(e.target.value) : e.target.value;
@@ -128,12 +134,26 @@ const AccountTransaction = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    if (radioValue === "TRANSFER") {
-      // @ts-ignore
-      dispatch(createTransferAsync(dataTransaction));
-    } else {
-      // @ts-ignore
-      dispatch(createAccountTransactionAsync(dataTransaction));
+    let ok = true;
+
+    if (
+      (type?.validateAmountAvailableDebit && radioValue === "DEBIT") ||
+      (type?.validateAmountAvailableTransfer && radioValue === "TRANSFER")
+    ) {
+      if (dataTransaction.amount > account.currentBalance) {
+        ok = false;
+        setShowA(true);
+      }
+    }
+
+    if (ok) {
+      if (radioValue === "TRANSFER") {
+        // @ts-ignore
+        dispatch(createTransferAsync(dataTransaction));
+      } else {
+        // @ts-ignore
+        dispatch(createAccountTransactionAsync(dataTransaction));
+      }
     }
   };
 
@@ -224,6 +244,29 @@ const AccountTransaction = () => {
                 placeholder="Enter a Note"
               />
             </div>
+
+            <Toast
+              show={showA}
+              onClose={toggleShowA}
+              delay={3000}
+              autohide
+              bg="warning"
+            >
+              <Toast.Header>
+                <img
+                  src="holder.js/20x20?text=%20"
+                  className="rounded me-2"
+                  alt=""
+                />
+                <strong className="me-auto">Invalid Amount</strong>
+              </Toast.Header>
+              <Toast.Body>
+                Amount available:{" "}
+                <strong>
+                  {getAmount(account.currency, account.currentBalance)}
+                </strong>
+              </Toast.Body>
+            </Toast>
 
             <div className="d-grid gap-2 mt-3">
               <button

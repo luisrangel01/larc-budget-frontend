@@ -144,6 +144,7 @@ const AccountDetail = () => {
                 transactions={transactions}
                 handleDeleteTransaccion={deleteTransaction}
                 disabled={loading}
+                account={account}
               />
             </div>
           </div>

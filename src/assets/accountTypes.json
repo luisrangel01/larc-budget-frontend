@@ -3,66 +3,88 @@
         "id": "CASH",
         "name": "Cash",
         "order": 1,
-        "icon": "cash"
+        "icon": "cash",
+        "validateAmountAvailableTransfer": true,
+        "validateAmountAvailableDebit": true
     },
     {
         "id": "GENERAL",
         "name": "General",
         "order": 2,
-        "icon": "general"
+        "icon": "general",
+        "validateAmountAvailableTransfer": true,
+        "validateAmountAvailableDebit": true
     },
     {
         "id": "CURRENT_ACCOUNT",
         "name": "Current account",
         "order": 3,
-        "icon": "currentAccount"
+        "icon": "currentAccount",
+        "validateAmountAvailableTransfer": true,
+        "validateAmountAvailableDebit": true
     },
     {
         "id": "CREDIT_CARD",
         "name": "Credit card",
         "order": 4,
-        "icon": "creditCard"
+        "icon": "creditCard",
+        "validateAmountAvailableTransfer": false,
+        "validateAmountAvailableDebit": false
     },
     {
         "id": "SAVING_ACCOUNT",
         "name": "Saving account",
         "order": 5,
-        "icon": "savingAccount"
+        "icon": "savingAccount",
+        "validateAmountAvailableTransfer": true,
+        "validateAmountAvailableDebit": true
     },
     {
         "id": "BONUS",
         "name": "Bonus",
         "order": 6,
-        "icon": "bonus"
+        "icon": "bonus",
+        "validateAmountAvailableTransfer": true,
+        "validateAmountAvailableDebit": true
     },
     {
         "id": "INSURANCE",
         "name": "Insurance",
         "order": 7,
-        "icon": "insurance"
+        "icon": "insurance",
+        "validateAmountAvailableTransfer": false,
+        "validateAmountAvailableDebit": false
     },
     {
         "id": "INVESTMENT",
         "name": "Investment",
         "order": 8,
-        "icon": "investment"
+        "icon": "investment",
+        "validateAmountAvailableTransfer": true,
+        "validateAmountAvailableDebit": true
     },
     {
         "id": "LOAN",
         "name": "Loan",
         "order": 9,
-        "icon": "loan"
+        "icon": "loan",
+        "validateAmountAvailableTransfer": false,
+        "validateAmountAvailableDebit": false
     },
     {
         "id": "MORTGAGE",
         "name": "Mortgage",
         "order": 10,
-        "icon": "mortgage"
+        "icon": "mortgage",
+        "validateAmountAvailableTransfer": false,
+        "validateAmountAvailableDebit": false
     },
     {
         "id": "ACCOUNT_WITH_OVERDRAFT",
         "name": "Account with overdraft",
         "order": 11,
-        "icon": "accountWithOverdraft"
+        "icon": "accountWithOverdraft",
+        "validateAmountAvailableTransfer": false,
+        "validateAmountAvailableDebit": false
     }
 ]

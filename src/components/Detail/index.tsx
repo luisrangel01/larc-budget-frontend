@@ -2,17 +2,21 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 
 import { IAccountTransaction } from "../../interfaces/accountTransaction.interface";
+import { IAccount } from "../../interfaces/account.interface";
+import { getAmount } from "../../helpers/utils";
 
 type DetailProps = {
   transactions: IAccountTransaction[];
   handleDeleteTransaccion: any;
   disabled: boolean;
+  account: IAccount;
 };
 
 const Detail = ({
   transactions,
   handleDeleteTransaccion,
   disabled,
+  account,
 }: DetailProps) => {
   const deleteRow = (transaction: any) => {
     handleDeleteTransaccion(transaction);
@@ -37,12 +41,18 @@ const Detail = ({
                 <td>{transaction.id?.substring(transaction.id.length - 5)}</td>
                 <td>{transaction.note}</td>
                 <td>
-                  {transaction.type === "CREDIT" ? transaction.amount : null}
+                  {transaction.type === "CREDIT"
+                    ? getAmount(account.currency, transaction.amount || 0)
+                    : null}
                 </td>
                 <td>
-                  {transaction.type === "CREDIT" ? null : transaction.amount}
+                  {transaction.type === "CREDIT"
+                    ? null
+                    : getAmount(account.currency, transaction.amount || 0)}
                 </td>
-                <td>{transaction.currentBalance}</td>
+                <td>
+                  {getAmount(account.currency, transaction.currentBalance || 0)}
+                </td>
                 <td>
                   <Button
                     variant="danger"

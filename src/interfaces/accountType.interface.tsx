@@ -3,4 +3,6 @@ export interface IAccountType {
   name: string;
   order?: number;
   icon?: string;
+  validateAmountAvailableTransfer: boolean;
+  validateAmountAvailableDebit: boolean;
 }
