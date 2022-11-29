@@ -6,9 +6,14 @@ import { IAccountTransaction } from "../../interfaces/accountTransaction.interfa
 type DetailProps = {
   transactions: IAccountTransaction[];
   handleDeleteTransaccion: any;
+  disabled: boolean;
 };
 
-const Detail = ({ transactions, handleDeleteTransaccion }: DetailProps) => {
+const Detail = ({
+  transactions,
+  handleDeleteTransaccion,
+  disabled,
+}: DetailProps) => {
   const deleteRow = (transaction: any) => {
     handleDeleteTransaccion(transaction);
   };
@@ -42,6 +47,7 @@ const Detail = ({ transactions, handleDeleteTransaccion }: DetailProps) => {
                   <Button
                     variant="danger"
                     onClick={() => deleteRow(transaction)}
+                    disabled={disabled}
                   >
                     Delete
                   </Button>

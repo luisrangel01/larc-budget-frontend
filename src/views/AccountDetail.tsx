@@ -25,7 +25,9 @@ const AccountDetail = () => {
 
   const { currencies } = useSelector((state: any) => state.currencies);
   const { types } = useSelector((state: any) => state.accountTypes);
-  const { transactions } = useSelector((state: any) => state.transactions);
+  const { transactions, status: statusTransactions } = useSelector(
+    (state: any) => state.transactions
+  );
   const { updateResult, status, revertAccountTransaction } = useSelector(
     (state: any) => state.updateAccountTransaction
   );
@@ -48,8 +50,8 @@ const AccountDetail = () => {
   }, []);
 
   useEffect(() => {
-    setLoading(status === "loading");
-  }, [status]);
+    setLoading(status === "loading" || statusTransactions === "loading");
+  }, [status, statusTransactions]);
 
   const deleteTransaction = (transaction: any) => {
     // @ts-ignore
@@ -141,6 +143,7 @@ const AccountDetail = () => {
               <Detail
                 transactions={transactions}
                 handleDeleteTransaccion={deleteTransaction}
+                disabled={loading}
               />
             </div>
           </div>
