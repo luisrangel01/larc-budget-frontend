@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
@@ -38,10 +38,6 @@ const MenuNavbar = () => {
     }
   }, [statusTokenCode]);
 
-  const home = () => {
-    navigate("/home");
-  };
-
   const navigateTo = (address: string) => {
     navigate(`${address}`);
   };
@@ -56,42 +52,25 @@ const MenuNavbar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand onClick={() => navigateTo("/home")}>
+        <Navbar.Brand onClick={() => navigateTo("/dashboard")}>
           Billeterapp
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={() => navigateTo("/home")}>Home</Nav.Link>
-            <Nav.Link onClick={() => navigateTo("/home")}>Homex</Nav.Link>
             <Nav.Link onClick={() => navigateTo("/dashboard")}>
               Dashboard
-            </Nav.Link>
-            <Nav.Link onClick={() => navigateTo("/create-cash-account")}>
-              Create Cash Account
             </Nav.Link>
             <Nav.Link onClick={() => navigateTo("/create-account")}>
               Create Account
             </Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Profile" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">
+              <NavDropdown.Item>
                 {user.name}
                 <br />
                 {user.username}
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-              <NavDropdown.Item onClick={home}>Home</NavDropdown.Item>
-              <NavDropdown.Item onClick={signOutNow}>
-                Sign Out
-              </NavDropdown.Item>
+              <NavDropdown.Item onClick={signOutNow}>Sign Out</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

@@ -9,6 +9,7 @@ import {
   createAccountAsync,
   resetCreateAccount,
 } from "../store/accounts/createAccountSlice";
+import { getAccountsAsync } from "../store/accounts/accountsSlice";
 import MenuNavbar from "../components/MenuNavbar";
 import Currencies from "../components/Currencies";
 import AccountTypes from "../components/AccountTypes";
@@ -60,6 +61,8 @@ const CreateCashAccount = () => {
 
   useEffect(() => {
     if (accountId.length !== 0) {
+      // @ts-ignore
+      dispatch(getAccountsAsync());
       // @ts-ignore
       dispatch(resetCreateAccount());
       navigate("/dashboard");
@@ -170,7 +173,6 @@ const CreateCashAccount = () => {
                 Save
               </button>
             </div>
-
           </div>
         </form>
       </div>
