@@ -28,9 +28,7 @@ export const currenciesSlice = createSlice({
       state.status = "loading";
     });
 
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getCurrenciesAsync.fulfilled, (state, action) => {
-      // Add user to the state array
       state.currencies = action.payload;
       if (state.currencies.length > 0) {
         state.status = "succeeded";

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
 
 import { getSignUpAsync, resetSignUp } from "../store/auth/authSignUpSlice";
 
@@ -21,7 +19,6 @@ const SignUp = (props: any) => {
     e.preventDefault();
 
     // @ts-ignore
-    // dispatch(getSignIn(dataSignIn));
     dispatch(getSignUpAsync(dataSignUp));
   };
 

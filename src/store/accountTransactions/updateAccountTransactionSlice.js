@@ -66,11 +66,9 @@ export const updateAccountTransactionSlice = createSlice({
       state.status = "loading";
     });
 
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(
       updateAccountTransactionAsync.fulfilled,
       (state, action) => {
-        // Add user to the state array
         if (action.payload?.status === 200) {
           state.status = "succeeded";
           state.transactionId = action.payload.transaction.id;

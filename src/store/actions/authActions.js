@@ -5,7 +5,6 @@
 // }
 
 // export const getSignIn = (state, action) => {
-//   console.log(action);
 //   state.signIn = true;
 //   state.user = action.payload;
 //   //localStorage.setItem('user',action.payload)

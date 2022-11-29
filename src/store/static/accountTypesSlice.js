@@ -28,9 +28,7 @@ export const accountTypesSlice = createSlice({
       state.status = "loading";
     });
 
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getAccountTypesAsync.fulfilled, (state, action) => {
-      // Add user to the state array
       state.types = action.payload;
       if (state.types.length > 0) {
         state.status = "succeeded";

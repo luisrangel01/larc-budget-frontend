@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-// import { getSignIn, signOut, getSignInAsync } from "./../store/authSlice";
 import { getSignInAsync } from "../store/auth/authSlice";
 
 const SignIn = () => {
@@ -18,7 +17,6 @@ const SignIn = () => {
     e.preventDefault();
 
     // @ts-ignore
-    // dispatch(getSignIn(dataSignIn));
     dispatch(getSignInAsync(dataSignIn));
   };
 

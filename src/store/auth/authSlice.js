@@ -61,7 +61,6 @@ export const authSlice = createSlice({
 
   reducers: {
     // getSignIn: (state, action) => {
-    //   console.log(`action:`, action);
     //   state.signIn = true;
     //   state.user = action.payload;
     //   //localStorage.setItem('user',action.payload)
@@ -90,9 +89,7 @@ export const authSlice = createSlice({
       state.status = "loading";
     });
 
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getSignInAsync.fulfilled, (state, action) => {
-      // Add user to the state array
       if (action.payload?.status === 201) {
         state.status = "succeeded";
         const decoded = jwt_decode(action.payload.accessToken);

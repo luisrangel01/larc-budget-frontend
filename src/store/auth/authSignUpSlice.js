@@ -49,17 +49,10 @@ export const authSignUpSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(getSignUpAsync.pending, (state, action) => {
-      console.log(`xxx getSignUpAsync.pending...`);
       state.status = "loading";
     });
 
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getSignUpAsync.fulfilled, (state, action) => {
-      console.log(`xxx getSignUpAsync.fulfilled...`);
-      console.log(`action.payload?.status:`, action.payload?.status);
-      console.log(`action.payload?:`, action.payload);
-
-      // Add user to the state array
       if (action.payload?.status === 201) {
         state.status = "succeeded";
         state.user = action.payload;
@@ -70,7 +63,6 @@ export const authSignUpSlice = createSlice({
     });
 
     builder.addCase(getSignUpAsync.rejected, (state, action) => {
-      console.log(`xxx getSignUpAsync.rejected...`);
       console.error(action.error);
       state.status = "failed";
       state.error = action.error.message;
