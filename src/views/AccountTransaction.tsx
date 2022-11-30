@@ -35,7 +35,7 @@ const AccountTransaction = () => {
       accountId: account.id,
       currency: account.currency,
       type: radioValue,
-      amount: 0,
+      amount: null,
       note: "",
       destinationAccountId: "",
     });
@@ -213,9 +213,10 @@ const AccountTransaction = () => {
                 type="number"
                 name="amount"
                 onChange={handleChange}
-                value={dataTransaction.amount}
+                value={dataTransaction.amount || ""}
                 className="form-control mt-1 text-number"
                 placeholder="Enter an Amount"
+                required={true}
               />
             </div>
 
@@ -242,6 +243,7 @@ const AccountTransaction = () => {
                 value={dataTransaction.note}
                 className="form-control mt-1"
                 placeholder="Enter a Note"
+                required={true}
               />
             </div>
 

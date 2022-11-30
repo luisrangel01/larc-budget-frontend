@@ -13,6 +13,6 @@ export interface IAccountTransactionProcess {
   type?: string;
   destinationAccountId?: string;
   currency: string;
-  amount: number;
+  amount: number | null;
   note: string;
 }
