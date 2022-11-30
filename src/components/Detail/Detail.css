@@ -1,0 +1,21 @@
+.credit {
+  background-color: yellowgreen !important;
+  font-weight: bold;
+}
+
+.debit {
+  background-color: tomato !important;
+  font-weight: bold;
+  color: white !important;
+}
+
+.balancePositive {
+  background-color: greenyellow !important;
+  font-weight: bold;
+}
+
+.balanceNegative {
+  background-color: crimson !important;
+  font-weight: bold;
+  color: white !important;
+}

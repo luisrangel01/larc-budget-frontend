@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { IAccountTransaction } from "../../interfaces/accountTransaction.interface";
 import { IAccount } from "../../interfaces/account.interface";
 import { getAmount } from "../../helpers/utils";
+import "./Detail.css";
 
 type DetailProps = {
   transactions: IAccountTransaction[];
@@ -40,17 +41,25 @@ const Detail = ({
               <tr key={transaction.id}>
                 <td>{transaction.id?.substring(transaction.id.length - 5)}</td>
                 <td>{transaction.note}</td>
-                <td>
+                <td className={transaction.type === "CREDIT" ? "credit" : ""}>
                   {transaction.type === "CREDIT"
                     ? getAmount(account.currency, transaction.amount || 0)
                     : null}
                 </td>
-                <td>
+                <td className={transaction.type !== "CREDIT" ? "debit" : ""}>
                   {transaction.type === "CREDIT"
                     ? null
                     : getAmount(account.currency, transaction.amount || 0)}
                 </td>
-                <td>
+                <td
+                  className={
+                    (transaction.currentBalance || 0) > 0
+                      ? "balancePositive"
+                      : (transaction.currentBalance || 0) < 0
+                      ? "balanceNegative"
+                      : ""
+                  }
+                >
                   {getAmount(account.currency, transaction.currentBalance || 0)}
                 </td>
                 <td>
