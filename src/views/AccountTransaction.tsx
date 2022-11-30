@@ -140,7 +140,7 @@ const AccountTransaction = () => {
       (type?.validateAmountAvailableDebit && radioValue === "DEBIT") ||
       (type?.validateAmountAvailableTransfer && radioValue === "TRANSFER")
     ) {
-      if (dataTransaction.amount > account.currentBalance) {
+      if ((dataTransaction.amount || 0) > account.currentBalance) {
         ok = false;
         setShowMessage(true);
       }
