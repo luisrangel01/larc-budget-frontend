@@ -15,7 +15,11 @@ export const getSignInAsync = createAsyncThunk(
       },
     }).then(async (data) => {
       const result = await data.json();
-      return { ...result, status: data.status };
+      return {
+        ...result,
+        status: data.status,
+        statusCode: data.status !== 201 ? result.statusCode : data.status,
+      };
     });
 
     return response;
@@ -49,6 +53,8 @@ const initialState = {
   token: token ? token : null,
   tokenValid: false,
   status: "idle",
+  statusCode: 0,
+  message: "",
   statusToken: "idle",
   statusTokenCode: 0,
   error: null,
@@ -75,12 +81,17 @@ export const authSlice = createSlice({
         token: null,
         tokenValid: false,
         status: "idle",
+        statusCode: 0,
+        message: "",
         statusToken: "idle",
         statusTokenCode: 0,
         error: null,
         errorToken: null,
       };
       // return initialState;
+    },
+    resetSignInError: (state, action) => {
+      return { ...state, statusCode: 0 };
     },
   },
 
@@ -90,6 +101,8 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(getSignInAsync.fulfilled, (state, action) => {
+      state.statusCode = action.payload.statusCode;
+      state.message = action.payload.message;
       if (action.payload?.status === 201) {
         state.status = "succeeded";
         const decoded = jwt_decode(action.payload.accessToken);
@@ -135,6 +148,6 @@ export const authSlice = createSlice({
 });
 
 // export const { getSignIn, signOut } = authSlice.actions;
-export const { signOut } = authSlice.actions;
+export const { signOut, resetSignInError } = authSlice.actions;
 
 export default authSlice.reducer;

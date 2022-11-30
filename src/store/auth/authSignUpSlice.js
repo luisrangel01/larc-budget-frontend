@@ -18,7 +18,12 @@ export const getSignUpAsync = createAsyncThunk(
       },
     }).then(async (data) => {
       const result = await data.json();
-      return { ...result, status: data.status };
+
+      return {
+        ...result,
+        status: data.status,
+        statusCode: data.status !== 201 ? result.statusCode : data.status,
+      };
     });
 
     return response;
@@ -29,6 +34,8 @@ const initialState = {
   signUp: false,
   user: { username: "", id: "" },
   status: "idle",
+  statusCode: 0,
+  message: "",
   error: null,
 };
 
@@ -42,8 +49,13 @@ export const authSignUpSlice = createSlice({
         signUp: false,
         user: { username: "", id: "" },
         status: "idle",
+        statusCode: 0,
+        message: "",
         error: null,
       };
+    },
+    resetSignUpError: (state, action) => {
+      return { ...state, statusCode: 0 };
     },
   },
 
@@ -53,6 +65,8 @@ export const authSignUpSlice = createSlice({
     });
 
     builder.addCase(getSignUpAsync.fulfilled, (state, action) => {
+      state.statusCode = action.payload.statusCode;
+      state.message = action.payload.message;
       if (action.payload?.status === 201) {
         state.status = "succeeded";
         state.user = action.payload;
@@ -70,6 +84,6 @@ export const authSignUpSlice = createSlice({
   },
 });
 
-export const { resetSignUp } = authSignUpSlice.actions;
+export const { resetSignUp, resetSignUpError } = authSignUpSlice.actions;
 
 export default authSignUpSlice.reducer;

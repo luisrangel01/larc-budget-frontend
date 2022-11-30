@@ -28,7 +28,7 @@ const AccountTransaction = () => {
 
   const { types } = useSelector((state: any) => state.accountTypes);
   const [loading, setLoading] = useState<boolean>(false);
-  const [showA, setShowA] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const [radioValue, setRadioValue] = useState<string>("DEBIT");
   const [dataTransaction, setDataTransaction] =
     useState<IAccountTransactionProcess>({
@@ -116,7 +116,7 @@ const AccountTransaction = () => {
     }
   }, [restOfAccount]);
 
-  const toggleShowA = () => setShowA(!showA);
+  const toggleShowMessage = () => setShowMessage(!showMessage);
 
   const handleChange = (e: any) => {
     const value =
@@ -142,7 +142,7 @@ const AccountTransaction = () => {
     ) {
       if (dataTransaction.amount > account.currentBalance) {
         ok = false;
-        setShowA(true);
+        setShowMessage(true);
       }
     }
 
@@ -246,8 +246,8 @@ const AccountTransaction = () => {
             </div>
 
             <Toast
-              show={showA}
-              onClose={toggleShowA}
+              show={showMessage}
+              onClose={toggleShowMessage}
               delay={3000}
               autohide
               bg="warning"

@@ -2,16 +2,25 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { getSignUpAsync, resetSignUp } from "../store/auth/authSignUpSlice";
+import {
+  getSignUpAsync,
+  resetSignUp,
+  resetSignUpError,
+} from "../store/auth/authSignUpSlice";
+import WarningMessage from "../components/WarningMessage";
+import { Spinner } from "react-bootstrap";
 
 const SignUp = (props: any) => {
-  const [key, setKey] = useState("home");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showMessage, setShowMessage] = useState<boolean>(false);
   const [dataSignUp, setDataSignUp] = useState({
     email: "",
     password: "",
     name: "",
   });
-  const { signUp } = useSelector((state: any) => state.authSignUp);
+  const { signUp, status, statusCode, message } = useSelector(
+    (state: any) => state.authSignUp
+  );
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
@@ -23,12 +32,28 @@ const SignUp = (props: any) => {
   };
 
   useEffect(() => {
+    setLoading(status === "loading");
+  }, [status]);
+
+  useEffect(() => {
     if (signUp) {
       // @ts-ignore
       dispatch(resetSignUp());
       navigate("/sign-in");
     }
   }, [signUp]);
+
+  useEffect(() => {
+    if (statusCode) {
+      if (statusCode !== 201) {
+        setShowMessage(true);
+        // @ts-ignore
+        dispatch(resetSignUpError());
+      }
+    }
+  }, [statusCode]);
+
+  const toggleShowMessage = () => setShowMessage(!showMessage);
 
   const handleChange = (e: any) => {
     setDataSignUp({ ...dataSignUp, [e.target.name]: e.target.value });
@@ -40,9 +65,15 @@ const SignUp = (props: any) => {
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form" onSubmit={handleSubmit}>
+      <form className="General-form" onSubmit={handleSubmit}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
+          {loading && (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          )}
+
           <div className="text-center">
             Already registered?{" "}
             <span className="link-primary" onClick={signIn}>
@@ -82,8 +113,20 @@ const SignUp = (props: any) => {
               placeholder="Password"
             />
           </div>
+
+          <WarningMessage
+            showMessage={showMessage}
+            toggleShowMessage={toggleShowMessage}
+            title="Sign Up"
+            message={message}
+          />
+
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={loading}
+            >
               Submit
             </button>
           </div>

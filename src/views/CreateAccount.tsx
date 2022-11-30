@@ -107,7 +107,7 @@ const CreateCashAccount = () => {
       <MenuNavbar />
 
       <div className="Auth-form-container">
-        <form className="Auth-form" onSubmit={handleSubmit}>
+        <form className="General-form" onSubmit={handleSubmit}>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Configure Account</h3>
             {loading && (
