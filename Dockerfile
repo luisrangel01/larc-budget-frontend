@@ -9,7 +9,7 @@ ENV REACT_APP_BACKEND_BASE_URL=http://localhost:3800
 ENV REACT_APP_API_URL=http://localhost:3002
 
 COPY . /opt/app
-COPY . .
+# COPY . .
 
 WORKDIR /opt/app
 

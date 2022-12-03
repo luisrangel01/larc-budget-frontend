@@ -58,6 +58,14 @@
   background-color: white;
 }
 
+.General-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  /* height: 100vh; */
+}
+
 .General-form {
   width: 480px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
@@ -65,6 +73,10 @@
   padding-bottom: 20px;
   border-radius: 8px;
   background-color: white;
+}
+
+.Card-account { 
+  width: 90%;
 }
 
 .Auth-form-content {
