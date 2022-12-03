@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const { REACT_APP_API_URL } = process.env;
+
 export const getAccountsAsync = createAsyncThunk(
   "userAccounts/getAccountsAsync",
   async () => {
@@ -11,7 +13,7 @@ export const getAccountsAsync = createAsyncThunk(
       },
     };
 
-    const response = await fetch("http://localhost:3002/accounts", init).then(
+    const response = await fetch(`${REACT_APP_API_URL}/accounts`, init).then(
       async (data) => {
         const status = data.status;
         const statusText = data.statusText;

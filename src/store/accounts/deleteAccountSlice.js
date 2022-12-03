@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const { REACT_APP_API_URL } = process.env;
+
 export const deleteAccountAsync = createAsyncThunk(
   "deleteAccount/deleteAccountAsync",
   async (data) => {
@@ -12,7 +14,7 @@ export const deleteAccountAsync = createAsyncThunk(
     };
 
     const response = await fetch(
-      `http://localhost:3002/accounts/${data.id}`,
+      `${REACT_APP_API_URL}/accounts/${data.id}`,
       init
     ).then(async (data) => {
       const result = await data.json();

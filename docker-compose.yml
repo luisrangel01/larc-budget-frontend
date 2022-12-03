@@ -1,0 +1,13 @@
+version: '1'
+
+services:
+  frontend:
+    container_name: react-cloud-run-container
+    build:
+      dockerfile: ./Dockerfile
+    image: react-cloud-run
+    restart: always
+    environment:
+      REACT_APP_API_URL: http://192.168.86.122:3002
+    ports:
+      - 3000:3000

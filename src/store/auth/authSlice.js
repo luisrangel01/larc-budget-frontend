@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
 
+const { REACT_APP_API_URL } = process.env;
+
 export const getSignInAsync = createAsyncThunk(
   "auth/getSignInAsync",
   async (data) => {
     const body = { username: data.email, password: data.password };
 
-    const response = await fetch("http://localhost:3002/auth/sign-in", {
+    const response = await fetch(`${REACT_APP_API_URL}/auth/sign-in`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -29,7 +31,7 @@ export const getSignInAsync = createAsyncThunk(
 export const getTokenCheckAsync = createAsyncThunk(
   "auth/getTokenCheckAsync",
   async () => {
-    const response = await fetch("http://localhost:3002/auth/test", {
+    const response = await fetch(`${REACT_APP_API_URL}/auth/test`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

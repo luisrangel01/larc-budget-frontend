@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const { REACT_APP_API_URL } = process.env;
+
 export const createTransferAsync = createAsyncThunk(
   "createTransfer/createTransferAsync",
   async (data) => {
@@ -21,7 +23,7 @@ export const createTransferAsync = createAsyncThunk(
     };
 
     const response = await fetch(
-      "http://localhost:3002/account-transactions/transfer",
+      `${REACT_APP_API_URL}/account-transactions/transfer`,
       init
     ).then(async (data) => {
       const result = await data.json();

@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const { REACT_APP_API_URL } = process.env;
+
 export const updateStatusAccountAsync = createAsyncThunk(
   "updateStatusAccount/updateStatusAccountAsync",
   async (data) => {
@@ -17,7 +19,7 @@ export const updateStatusAccountAsync = createAsyncThunk(
     };
 
     const response = await fetch(
-      `http://localhost:3002/accounts/${data.id}/status`,
+      `${REACT_APP_API_URL}/accounts/${data.id}/status`,
       init
     ).then(async (data) => {
       const result = await data.json();

@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const { REACT_APP_API_URL } = process.env;
+
 export const getSignUpAsync = createAsyncThunk(
   "authSignUp/getSignUpAsync",
   async (data) => {
@@ -9,7 +11,7 @@ export const getSignUpAsync = createAsyncThunk(
       name: data.name,
     };
 
-    const response = await fetch("http://localhost:3002/auth/sign-up", {
+    const response = await fetch(`${REACT_APP_API_URL}/auth/sign-up`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: {

@@ -6,6 +6,8 @@ import { getSignInAsync, resetSignInError } from "../store/auth/authSlice";
 import WarningMessage from "../components/WarningMessage";
 import { Spinner } from "react-bootstrap";
 
+const { REACT_APP_API_URL } = process.env;
+
 const SignIn = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [showMessage, setShowMessage] = useState<boolean>(false);
@@ -25,6 +27,10 @@ const SignIn = () => {
     // @ts-ignore
     dispatch(getSignInAsync(dataSignIn));
   };
+
+  useEffect(() => {
+    console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
+  }, []);
 
   useEffect(() => {
     setLoading(status === "loading");
